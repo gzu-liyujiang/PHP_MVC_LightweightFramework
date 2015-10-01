@@ -1,0 +1,254 @@
+﻿<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="Cache-Control" content="no-cache"/>
+    <meta name="Pragma" content="no-cache"/>
+    <meta name="Expires" content="0"/>
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <meta name="MobileOptimized" content="320"/>
+    <meta name="Author" content="{$author}"/>
+    <meta name='Keywords' content="{$seo_keywords}"/>
+    <meta name='Description' content="{$seo_description}"/>
+    <meta name="robots" content="all"/>
+    <meta name="baidu-site-verification" content="PiOwUHsdmT"/>
+    <title>{$title} - {$seo_title}</title>
+    <link type="image/x-icon" rel="icon" href="./favicon.ico"/>
+    <link type="image/x-icon" rel="shortcut icon" href="./favicon.ico"/>
+    <link href="./views/assets/css/default.css" rel="stylesheet"/>
+</head>
+
+<body>
+<noscript class="error">
+    很遗憾，由于你的浏览器不支持或禁用了JavaScript，导致无法获得正常体验。
+</noscript>
+<style type="text/css">
+    body {
+        padding: 0;
+        margin: 0;
+        background: #FFFFFF;
+    }
+
+    a:hover {
+        text-decoration: none;
+    }
+
+    .banner {
+        text-align: center;
+        background-image: url("./views/assets/img/banner_bg.png");
+        background-size: cover;
+        position: relative;
+    }
+
+    .banner img {
+        display: block;
+        margin: 0 auto;
+    }
+
+    .download-button a {
+        color: #9DD532;
+        border: 1px solid #9DD532;
+        background: #fff;
+        text-decoration: none;
+        line-height: 30px;
+        border-radius: 10px;
+        text-align: center;
+        margin: 15px 20px 0;
+        display: block;
+    }
+
+    .download-button a h4 {
+        font-size: 16px;
+        display: inline;
+    }
+
+    .download-button a span {
+        font-size: 12px;
+    }
+
+    .download-recommend a {
+        color: #fff;
+        background: #9DD532;
+    }
+
+    .content {
+        margin-bottom: 20px;
+    }
+
+    .description {
+        text-indent: 2em;
+    }
+
+    .description,
+    .change-log {
+        margin: 20px 5px 15px 5px;
+    }
+
+    .change-log h2 {
+        border-bottom: 1px dashed #ddd;
+        color: #41434a;
+        font-size: 15px;
+        line-height: 36px;
+    }
+
+    .change-log ol {
+        color: #8c8c8c;
+        font-size: 12px;
+        line-height: 22px;
+        list-style-type: decimal;
+        margin-left: 0px;
+        margin-top: 10px;
+        margin-bottom: 20px;
+    }
+
+    @media (min-width: 320px) {
+        .banner img {
+            width: 320px;
+        }
+
+        .change-log h2 {
+            font-size: 18px;
+        }
+
+        .change-log ol {
+            font-size: 14px;
+        }
+    }
+
+    @media (min-width: 480px) {
+        .banner img {
+            width: 480px;
+        }
+
+        .change-log h2 {
+            font-size: 20px;
+        }
+
+        .change-log ol {
+            font-size: 16px;
+        }
+    }
+
+    @media (min-width: 720px) {
+        .banner img {
+            width: 720px;
+        }
+    }
+</style>
+<script type="text/javascript">
+    setTimeout(function () {
+        try {
+            var info = JSON.parse(window.liyujiang.getSoftwareInfo());
+            if (info.versionCode < 9) {
+                alert("发现新版本，你当前的版本为v" + info.versionName + "，欢迎升级使用");
+            } else {
+                alert("你当前的版本为v" + info.versionName + "，已经是最新版本，无需升级");
+            }
+        } catch (e) {
+            //alert(e.toString());
+        }
+    }, 1000);
+
+    function openApp() {
+        //参见：http://www.baidufe.com/item/cc592a4b3382eed8ec6e.html
+        if (navigator.userAgent.match(/liyujiang/i)) {
+            location.href = 'liyujiang://info?name=software';
+            return;
+        }
+        // 通过iframe的方式试图打开APP，如果能正常打开，会直接切换到APP，并自动阻止a标签的默认行为，否则打开a标签的href链接
+        var ifr = document.createElement('iframe');
+        ifr.src = 'liyujiang://launch';
+        ifr.style.display = 'none';
+        document.body.appendChild(ifr);
+        window.setTimeout(function () {
+            document.body.removeChild(ifr);
+            if (navigator.userAgent.match(/android/i)) {
+                alert('亲，还未安装输入法皮肤控哦');
+            } else {
+                alert('亲，快用安卓手机安装试试吧！');
+            }
+        }, 3000);
+    }
+</script>
+<div class="content">
+    <div class="banner">
+        <a href="javascript:openApp();"><img alt="." src="./views/assets/img/banner.jpg"/></a>
+    </div>
+    <div class="description">
+        {$seo_description}
+    </div>
+    <div class="download-button download-recommend">
+        <a href="http://pan.baidu.com/s/1c0dPCA0">
+            <h4>最新版下载</h4><span>（V1.3.4，3.8M）</span>
+        </a>
+    </div>
+    <div class="change-log">
+        <h2>主要版本更新日志</h2>
+        <ol>
+            <li>修复讯飞皮肤候选栏及拼音区文字颜色总是为黑色的bug</li>
+            <li>修复搜狗皮肤拼音区文字颜色设置无效的bug</li>
+            <li>讯飞及搜狗皮肤拼音区背景颜色可选择完全透明</li>
+            <li class="download-button" style="list-style: none;">
+                <a href="http://pan.baidu.com/s/1c0dPCA0">
+                    <h4>V1.3.4，2015.9.22，3.8M</h4>
+                </a>
+            </li>
+        </ol>
+        <ol>
+            <li>支持<b style="color: #ff5053">导入</b>已使用过的讯飞皮肤、搜狗皮肤及百度主题</li>
+            <li>支持直接<b style="color: #ff53ff">编辑</b>已使用过的讯飞皮肤、搜狗皮肤及百度主题</li>
+            <li>支持普通按键、功能键及拼音输入区背景单独设置</li>
+            <li>支持图片素材变换任意颜色，方便生成N种颜色的按钮及候选栏小图标</li>
+            <li class="download-button" style="list-style: none;">
+                <a href="http://pan.baidu.com/s/1o65p9A6">
+                    <h4>V1.3.3，2015.9.19，3.7M</h4>
+                </a>
+            </li>
+        </ol>
+        <ol>
+            <li>候选栏背景素材针对不同的输入法进行优化</li>
+            <li>支持制作按键背景图及候选栏背景条</li>
+            <li>规避选择很小的图片做背景时奔溃的问题</li>
+            <li>可从文件管理器添加自己的素材、可删除不喜欢的素材</li>
+            <li>支持Android4.4以上系统的手机状态栏沉浸</li>
+            <li class="download-button" style="list-style: none;">
+                <a href="http://pan.baidu.com/s/1pJIIypl">
+                    <h4>V1.2，2015.8.22，3.6M</h4>
+                </a>
+            </li>
+        </ol>
+        <ol>
+            <li>可批量删除已经制作好的皮肤；</li>
+            <li>可从本地选择已经下载过的背景图；</li>
+            <li>一定程度上解决选择背景图时的卡顿问题；</li>
+            <li>增加对百度输入法小米版、百度输入法华为版的支持；</li>
+            <li>解决搜狗输入法及百度输入法主背景与候选栏背景一体化适配问题；</li>
+            <li>增加选择背景图时对图片进行旋转，调节色调饱和度、色相及亮度；</li>
+            <li>改进颜色选择器，可自由填写十六进制代码，按钮及候选栏自动配色预设；</li>
+            <li>解决制作一次白肚皮后，百度输入法皮肤按钮边框颜色失效问题。</li>
+            <li class="download-button" style="list-style: none;">
+                <a href="http://pan.baidu.com/s/1kTy7FH9">
+                    <h4>V1.1，2015.7.21，2.8M</h4>
+                </a>
+            </li>
+        </ol>
+        <ol>
+            <li>初始版本。</li>
+            <li class="download-button" style="list-style: none;">
+                <a href="http://pan.baidu.com/s/1hqxrQ9Q">
+                    <h4>V1.0，2015.7.15，2.9M</h4>
+                </a>
+            </li>
+        </ol>
+    </div>
+</div>
+<script type="text/javascript">
+    var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fcdd28cdfea81ed7bc9791b6b6217e73e' type='text/javascript'%3E%3C/script%3E"));
+</script>
+</body>
+
+</html>

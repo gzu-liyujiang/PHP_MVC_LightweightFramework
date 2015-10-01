@@ -1,0 +1,52 @@
+﻿/**
+ * 全局自定义CSS
+ * @author 李玉江
+ * @datetime 20130309-20150726
+ */
+
+@charset "utf-8";
+hr {
+	margin-top: 10px;
+	margin-bottom: 5px;
+	border-bottom: 1px dashed #ddd;
+	color: #41434a;
+}
+body {
+	background: #FFFFFF;
+	min-width: 320px;
+	margin: 0 auto;
+}
+p,
+.indent {
+	text-indent: 2em;
+}
+.header {
+	width: 100%;
+}
+.footer {
+	width: 100%;
+	position: fixed;
+	bottom: 0;
+}
+.center {
+	text-align: center;
+	margin: 0 auto;
+}
+.hide {
+	display: none;
+}
+.show {
+	display: inline;
+}
+.hint {
+	text-align: center;
+	padding-top: 20px;
+	color: #999999;
+	border: none;
+}
+.loader {
+	width: 38px;
+	height: 38px;
+	margin: 0 auto;
+	background: url(./loader.gif) no-repeat;
+}

@@ -1,0 +1,69 @@
+<!--{template Header.htm}-->
+<style type="text/css">
+	.mui-content {
+		padding: 10px;
+		background: transparent;
+	}
+	.mui-table-view-cell:after {
+		left: 1px;
+	}
+	#search {
+		width: 70%;
+	}
+</style>
+<div class="mui-content">
+	<div class="mui-content-padded center">
+		<input id="search" type="text" name="keyword" placeholder="请输入关键词" onClick="this.select()" />
+		<input type="button" value="搜索" onclick="searchArticle()" />
+	</div>
+	<!--{eval $count = isset($articles) ? count($articles) : 0;}-->
+	<!--{if $count < 1}-->
+	<br />
+	<p class="center hint">暂时还没有文章</p>
+	<!--{else}-->
+	<ul class="mui-table-view content">
+		<!--{eval $page_size = 7;}-->
+		<!--{eval $page_index = isset($_GET['page']) ? intval($_GET['page']) : 1;}-->
+		<!--{eval $pager = new Pager($count, $page_index, $page_size);}-->
+		<!--{for $i=$pager->getStartNum(); $i<=$pager->getEndNum(); $i++}-->
+		<li class="mui-table-view-cell mui-media">
+			<div class="mui-media-body">
+				<!--{$i}-->、
+				<a href="./index.php?c=Article&a=detail&id={$articles[$i-1]['id']}" id="article_{$articles[$i-1]['id']}">
+					<!--{eval echo Ubb::decode($articles[$i-1]['title']);}-->
+				</a>
+				<p class='mui-ellipsis'>
+					<!--{eval echo date('m月d日 H:i',$articles[$i-1]['timeline']);}-->
+				</p>
+			</div>
+		</li>
+		<!--{/for}-->
+	</ul>
+	<!--{if $count > $page_size}-->
+	<ul class="mui-pager">
+		<li>
+			<!--{$pager->getPrevPage()}-->
+		</li>
+		<li>
+			<!--{$pager->getNextPage()}-->
+		</li>
+		<li>
+			<span><!--{$page_index}-->/<!--{$pager->getPageNum()}--></span>
+		</li>
+	</ul>
+	<!--{/if}-->
+	<!--{/if}-->
+</div>
+<script type="text/javascript">
+	function searchArticle() {
+		var keyword = jQuery.trim(jQuery("#search").val());
+		if (keyword == "") {
+			alert("请输入要搜索的关键词！");
+			return false;
+		} else {
+			window.location = "./index.php?c=Article&a=search&keyword=" + encodeURIComponent(keyword);
+			return false;
+		}
+	}
+</script>
+<!--{template Footer.htm}-->
