@@ -1,0 +1,2 @@
+# PHP_MVC_REST_LightweightFramework
+PHP_MVC_REST作为一个极其轻量级MVC&amp;REST开发框架，是本人多年的php开发经验总结，不断吸取参考了flight、phx、discuz、punbb等开源项目的优点，最终形成独具自己风格的快速开发框架。
