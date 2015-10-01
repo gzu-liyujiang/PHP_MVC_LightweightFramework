@@ -2,11 +2,11 @@
 PHP_MVC_REST作为一个极其轻量级MVC&amp;API开发框架，是本人多年的php开发经验总结，不断吸取参考了flight、phx、discuz、punbb等开源项目的优点，最终形成独具自己风格的快速开发框架。目前我主要用于服务端应用程序接口开发，提供API和移动APP进行数据交换。   
 
 # 主要特性(Main Features)   
-极其轻量——核心代码不到100KB。   
-单一入口——所有URL都是基于index.php，格http://{host}/{path}/index.php?c={controller}&a={action}&key1=value1&key2=value2...   
-结构清晰——使用MVC模式，分三个主目录，分前台后台，分普通网页及API。   
+极其轻量——核心代码几十KB，不到100KB。   
+单一入口——所有URL都是基于index.php，格式：http://{host}/{path}/index.php?c={controller}&a={action}&key1=value1&key2=value2...   
+结构清晰——使用MVC模式，分三个主目录，分前台后台，分普通网页及数据接口。   
 易学易用——按照示例依样画葫芦，相信很快就能上手。   
-兼容性好——支持linux/windows+apache+mysql+php(lamp及windows)、windows+iis+php、android+lighttp+mysql+php(almp)等常见环境。   
+兼容性好——支持linux/windows+apache+mysql+php(lamp及wamp)、windows+iis+php、android+lighttp+mysql+php(almp)等常见环境。   
 免费开源——使用GPL协议，欢迎使用。   
 
 # 使用说明(Get Started)   
@@ -18,6 +18,7 @@ PHP_MVC_REST作为一个极其轻量级MVC&amp;API开发框架，是本人多年
 6.具体参见源代码。   
 # 示例代码(Sample)  
 ### 接口   
+see http://ime.qqtheme.cn/index.php?c=Upgrade   
 ```php
 class UpgradeController extends ApiController
 {
@@ -44,6 +45,7 @@ class UpgradeController extends ApiController
 }
 ```   
 ### 网页   
+see http://ime.qqtheme.cn/index.php?c=link   
 ```sql
 DROP TABLE IF EXISTS `lyj_link`;
 CREATE TABLE `lyj_link` (
@@ -133,5 +135,5 @@ class LinkController extends FrontController {
 
 # 参考链接(Links)   
 Demo website: http://ime.qqtheme.cn   
-Contact me: QQ:103269470, Email:liyujiang_tk@yeah.net   
-
+QQ: 103269470   
+Email: liyujiang_tk@yeah.net   
