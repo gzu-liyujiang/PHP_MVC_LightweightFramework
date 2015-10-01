@@ -3,15 +3,11 @@ PHP_MVC_REST作为一个极其轻量级MVC&amp;API开发框架，是本人多年
 
 # 主要特性(Main Features)   
 极其轻量——核心代码不到100KB。   
-Lightweight - Less than 100KB.   
+单一入口——所有URL都是基于index.php，格http://{host}/{path}/index.php?c={controller}&a={action}&key1=value1&key2=value2...   
 结构清晰——使用MVC模式，分三个主目录，分前台后台，分普通网页及API。   
-Constructer - Include models/views/controllers, backend/front, js/css/img, html/json...   
 易学易用——按照示例依样画葫芦，相信很快就能上手。   
-SoEasy - Extremely easy to learn and use.   
 兼容性好——支持linux/windows+apache+mysql+php(lamp及windows)、windows+iis+php、android+lighttp+mysql+php(almp)等常见环境。   
-Compatible - Support linux/windows+apache+mysql+php(lamp及windows)，windows+iis+php，android+lighttp+mysql+php(almp) and more.   
 免费开源——使用GPL协议，欢迎使用。   
-Free - Under GPL license, you can use it anywhere if you want.   
 
 # 使用说明(Get Started)   
 1.在install.sql中写好创建表结构及其数据的SQL;   
@@ -20,7 +16,8 @@ Free - Under GPL license, you can use it anywhere if you want.
 4.在/models/目录下继承者Model类对数据库表进行增删改查；   
 5.在/controllers/front/目录下继承自FrontController类把Model中对数据库表的操作绑定到前台页面中，backend目录下继承自BackendController把Model的数据操作绑定到后台页面中，api目录下继承自ApiController可将数据作为json格式返回供客户端使用；   
 6.具体参见源代码。   
-#示例代码(Sample)  
+# 示例代码(Sample)  
+### 接口   
 ```php
 class UpgradeController extends ApiController
 {
@@ -46,6 +43,7 @@ class UpgradeController extends ApiController
 
 }
 ```   
+### 网页   
 ```sql
 DROP TABLE IF EXISTS `lyj_link`;
 CREATE TABLE `lyj_link` (
@@ -83,7 +81,7 @@ class LinkController extends FrontController {
 	public function main() {
 		$this -> template -> assign('title', '友情推荐');
 		$model = new LinkModel();
-		$this -> template -> assign('links', $model -> getLinkListIncludeCategory());
+		$this -> template -> assign('links', $model -> getLinkList());
 		$this -> template -> display('LinkIndex.htm');
 	}
 
