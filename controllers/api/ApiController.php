@@ -8,7 +8,7 @@
 /**
  * 接口控制器
  */
-class ApiController extends Controller
+abstract class ApiController extends Controller
 {
 
     public function __construct()
@@ -17,16 +17,37 @@ class ApiController extends Controller
         if (empty($access_token)) {
             $this->noPermission();
         }
-        $tokenController = new TokenController();
-        if (!$tokenController->check($access_token)) {
+        if (ApiHelper::checkToken($access_token)) {
             $this->noPermission();
         }
     }
 
     public function main()
     {
-        $this->noPermission();
+        $method = $this->requestMethod();
+        switch ($method) {
+            case 'POST':
+                $this->post();
+                break;
+            case 'PUT':
+                $this->put();
+                break;
+            case 'DELETE':
+                $this->delete();
+                break;
+            default:
+                $this->get();
+                break;
+        }
     }
+
+    public abstract function get();
+
+    public abstract function post();
+
+    public abstract function put();
+
+    public abstract function delete();
 
     /**
      * 返回JSON数据
@@ -45,9 +66,9 @@ class ApiController extends Controller
         Flight::getInstance()->json($res);
     }
 
-    public function noPermission()
+    protected function noPermission()
     {
         //$this->responseJson(0, "没有权限访问");
     }
-    
+
 }

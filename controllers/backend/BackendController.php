@@ -19,7 +19,7 @@ abstract class BackendController extends Controller
     {
         $this->template = Template::getInstance();
         $this->template->setTemplateDir(ROOT_PATH . '/views/backend/');
-        $this->template->assign('title', '后台管理系统'););
+        $this->template->assign('title', '后台管理系统');
     }
 
 }

@@ -1,4 +1,39 @@
 ﻿--
+-- APP授权表
+--
+DROP TABLE IF EXISTS `lyj_app_token`;
+CREATE TABLE IF NOT EXISTS `lyj_app_token` (
+  `id`              INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `app_id`          INT(10) UNSIGNED NOT NULL,
+  `token`           VARCHAR(32)      NOT NULL,
+  `update_timeline` INT(10)          NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `app_id` (`app_id`)
+)
+  ENGINE = MyISAM
+  DEFAULT CHARSET = utf8
+  COMMENT = 'APP授权表';
+
+--
+-- APP表
+--
+DROP TABLE IF EXISTS `lyj_app`;
+CREATE TABLE IF NOT EXISTS `lyj_app` (
+  `id`         INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `app_id`     VARCHAR(15)               DEFAULT NULL,
+  `app_secret` VARCHAR(32)               DEFAULT NULL,
+  `timeline`   INT(10)          NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `app_id` (`app_id`)
+)
+  ENGINE = MyISAM
+  DEFAULT CHARSET = utf8
+  COMMENT = 'APP表';
+
+INSERT INTO `lyj_app` (`id`, `app_id`, `app_secret`, `timeline`)
+VALUES (1, '1383345444', 'e10adc3949ba59abbe56e057f20f883e', 0);
+
+--
 -- 栏目表
 --
 DROP TABLE IF EXISTS `lyj_category`;
