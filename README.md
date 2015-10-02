@@ -23,7 +23,7 @@ see http://ime.qqtheme.cn/index.php?c=Upgrade
 class UpgradeController extends ApiController
 {
 
-    public function main()
+    public function get()
     {
         $data = array(
             'versionName' => 'V1.3.4',
@@ -40,6 +40,21 @@ class UpgradeController extends ApiController
             'url' => 'http://ime.qqtheme.cn'
         );
         $this->responseJson(1, "获取数据成功", $data);
+    }
+
+    public function post()
+    {
+        $this->get();
+    }
+
+    public function put()
+    {
+        // TODO: Implement put() method.
+    }
+
+    public function delete()
+    {
+        // TODO: Implement delete() method.
     }
 
 }
