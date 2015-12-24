@@ -1,0 +1,89 @@
+<!--{template Header.htm}-->
+<style type="text/css">
+	.mui-content {
+		padding: 10px;
+		background: transparent;
+	}
+	.mui-input-group .mui-input-row::after {
+		left: 0px;
+	}
+	.mui-input-group::before,
+	.mui-input-group::after {
+		height: 0px;
+	}
+	.mui-btn {
+		padding: 5px;
+	}
+	h5 {
+		margin: 5px 7px;
+	}
+</style>
+<header class="mui-bar mui-bar-nav">
+	<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" href="javascript:history.back();"></a>
+	<h1 class="mui-title">{$title}</h1>
+</header>
+<div class="mui-content">
+	<form class="mui-input-group">
+		<h5>联系方式：</h5>
+		<div class="mui-input-row">
+			<input type="text" id="contact" name="contact" class="mui-input-clear mui-input" maxlength="200" placeholder="200字以内" value="{$contact}" />
+		</div>
+		<h5>网站标题：用于SEO</h5>
+		<div class="mui-input-row">
+			<input type="text" id="seo_title" name="seo_title" class="mui-input-clear mui-input" maxlength="50" placeholder="50字以内" value="{$seo_title}" />
+		</div>
+		<h5>关键字：用于SEO</h5>
+		<textarea id="seo_keywords" name="seo_keywords" maxlength="150" rows="2" placeholder="150字以内">{$seo_keywords}</textarea>
+		<h5>描述语：用于SEO</h5>
+		<textarea id="seo_description" name="seo_description" maxlength="300" rows="3" placeholder="300字以内">{$seo_description}</textarea>
+		<h5>版权信息：</h5>
+		<textarea id="copyright" name="copyright" rows="2">{eval echo htmlspecialchars($copyright);}</textarea>
+	</form>
+	<div class="mui-content-padded">
+		<button class="mui-btn mui-btn-block mui-btn-primary" onclick="setting()">设置</button>
+	</div>
+	<div class="loader hide"></div>
+</div>
+<script type="text/javascript">
+	function setting() {
+		var contact = jQuery.trim(jQuery("#contact").val());
+		var seo_title = jQuery.trim(jQuery("#seo_title").val());
+		var seo_keywords = jQuery.trim(jQuery("#seo_keywords").val());
+		var seo_description = jQuery.trim(jQuery("#seo_description").val());
+		var copyright = jQuery.trim(jQuery("#copyright").val());
+		if (contact == "") {
+			alert("联系方式不能为空！");
+			return false;
+		}
+		if (seo_title == "") {
+			alert("网页标题不能为空！");
+			return false;
+		}
+		if (copyright == "") {
+			alert("版权信息不能为空！");
+			return false;
+		}
+		jQuery(".loader").show();
+		contact = encodeURIComponent(contact);
+		seo_title = encodeURIComponent(seo_title);
+		seo_keywords = encodeURIComponent(seo_keywords);
+		seo_description = encodeURIComponent(seo_description);
+		copyright = encodeURIComponent(copyright);
+		jQuery.post("api.php?c=Setting", {
+			token: '{$token}',
+			contact: contact,
+			seo_title: seo_title,
+			seo_keywords: seo_keywords,
+			seo_description: seo_description,
+			copyright: copyright
+		}, function(result) {
+			jQuery(".loader").hide();
+			alert(result.msg);
+			if (result.code == 1) {
+				location.reload();
+			}
+		}, "json");
+		return false; // 阻止表单提交
+	}
+</script>
+<!--{template Footer.htm}-->

@@ -43,21 +43,6 @@ class AccessTokenController extends ApiController
 //        } else {
 //            $this->responseJson(0, "app授权失败", $_POST);
 //        }
-        $this->noPermission();
     }
-
-    public function post()
-    {
-        $this->get();
-    }
-
-    public function put()
-    {
-        // TODO: Implement put() method.
-    }
-
-    public function delete()
-    {
-        // TODO: Implement delete() method.
-    }
+    
 }

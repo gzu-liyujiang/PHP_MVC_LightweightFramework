@@ -1,0 +1,81 @@
+[2015-12-24 13:55:53] DEBUG
+SELECT skey,sval FROM lyj_setting
+
+[2015-12-24 14:39:41] DEBUG
+SELECT * FROM lyj_user WHERE account='admin'
+
+[2015-12-24 14:45:43] DEBUG
+SELECT * FROM lyj_user WHERE account='admin'
+
+[2015-12-24 14:45:50] DEBUG
+SELECT * FROM lyj_user WHERE account='admin'
+
+[2015-12-24 14:47:43] DEBUG
+SELECT * FROM lyj_user WHERE account='admin'
+
+[2015-12-24 14:47:43] DEBUG
+INSERT INTO lyj_token (user_id,token,update_timeline,expire_timeline) VALUES (1,'8d1785fd668e731c02da86d4e2bace25',1450939663,1453531663) ON DUPLICATE KEY UPDATE token='8d1785fd668e731c02da86d4e2bace25'
+
+[2015-12-24 14:47:43] DEBUG
+SELECT * FROM lyj_token WHERE token='8d1785fd668e731c02da86d4e2bace25'
+
+[2015-12-24 14:47:51] DEBUG
+SELECT * FROM lyj_token WHERE token='8d1785fd668e731c02da86d4e2bace25'
+
+[2015-12-24 14:48:55] DEBUG
+SELECT * FROM lyj_token WHERE token='8d1785fd668e731c02da86d4e2bace25'
+
+[2015-12-24 14:48:55] DEBUG
+SELECT skey,sval FROM lyj_setting
+
+[2015-12-24 14:49:17] DEBUG
+SELECT * FROM lyj_token WHERE token='8d1785fd668e731c02da86d4e2bace25'
+
+[2015-12-24 14:49:22] DEBUG
+SELECT * FROM lyj_token WHERE token='8d1785fd668e731c02da86d4e2bace25'
+
+[2015-12-24 14:49:28] DEBUG
+SELECT * FROM lyj_token WHERE token='8d1785fd668e731c02da86d4e2bace25'
+
+[2015-12-24 14:49:28] DEBUG
+SELECT * FROM lyj_link ORDER BY sortby ASC,id DESC
+
+[2015-12-24 14:49:31] DEBUG
+SELECT * FROM lyj_token WHERE token='8d1785fd668e731c02da86d4e2bace25'
+
+[2015-12-24 14:49:31] DEBUG
+SELECT * FROM lyj_link WHERE id=1
+
+[2015-12-24 14:49:31] DEBUG
+SELECT * FROM lyj_category ORDER BY sortby ASC,id DESC
+
+[2015-12-24 14:49:57] DEBUG
+SELECT * FROM lyj_token WHERE token='8d1785fd668e731c02da86d4e2bace25'
+
+[2015-12-24 14:49:57] DEBUG
+SELECT * FROM lyj_link WHERE id=1
+
+[2015-12-24 14:55:49] DEBUG
+SELECT * FROM lyj_user WHERE account='admin'
+
+[2015-12-24 14:55:49] DEBUG
+INSERT INTO lyj_token (user_id,token,update_timeline,expire_timeline) VALUES (1,'5ce316d57ebd7043ff0114b4811da61e',1450940149,1453532149) ON DUPLICATE KEY UPDATE token='5ce316d57ebd7043ff0114b4811da61e'
+
+[2015-12-24 14:55:49] DEBUG
+SELECT * FROM lyj_token WHERE token='5ce316d57ebd7043ff0114b4811da61e'
+
+[2015-12-24 14:55:53] DEBUG
+SELECT * FROM lyj_token WHERE token='5ce316d57ebd7043ff0114b4811da61e'
+
+[2015-12-24 14:55:53] DEBUG
+DELETE FROM lyj_token WHERE token='5ce316d57ebd7043ff0114b4811da61e'
+
+[2015-12-24 14:55:56] DEBUG
+SELECT * FROM lyj_user WHERE account='admin'
+
+[2015-12-24 14:55:56] DEBUG
+INSERT INTO lyj_token (user_id,token,update_timeline,expire_timeline) VALUES (1,'336657de3f92e94be4ee98e737e60332',1450940156,1453532156) ON DUPLICATE KEY UPDATE token='336657de3f92e94be4ee98e737e60332'
+
+[2015-12-24 14:55:56] DEBUG
+SELECT * FROM lyj_token WHERE token='336657de3f92e94be4ee98e737e60332'
+

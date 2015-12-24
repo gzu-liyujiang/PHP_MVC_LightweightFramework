@@ -1,37 +1,25 @@
-﻿--
--- APP授权表
 --
-DROP TABLE IF EXISTS `lyj_app_token`;
-CREATE TABLE IF NOT EXISTS `lyj_app_token` (
-  `id`              INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `app_id`          INT(10) UNSIGNED NOT NULL,
-  `token`           VARCHAR(32)      NOT NULL,
-  `update_timeline` INT(10)          NOT NULL,
+-- 设置表
+--
+DROP TABLE IF EXISTS `lyj_setting`;
+CREATE TABLE `lyj_setting` (
+  `id`   INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `skey` VARCHAR(100)     NOT NULL DEFAULT '要设置的键',
+  `sval` VARCHAR(1024)    NOT NULL DEFAULT '要设置的值',
   PRIMARY KEY (`id`),
-  UNIQUE KEY `app_id` (`app_id`)
+  UNIQUE KEY `skey` (`skey`)
 )
   ENGINE = MyISAM
   DEFAULT CHARSET = utf8
-  COMMENT = 'APP授权表';
+  COMMENT = '设置表';
 
---
--- APP表
---
-DROP TABLE IF EXISTS `lyj_app`;
-CREATE TABLE IF NOT EXISTS `lyj_app` (
-  `id`         INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `app_id`     VARCHAR(15)               DEFAULT NULL,
-  `app_secret` VARCHAR(32)               DEFAULT NULL,
-  `timeline`   INT(10)          NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `app_id` (`app_id`)
-)
-  ENGINE = MyISAM
-  DEFAULT CHARSET = utf8
-  COMMENT = 'APP表';
-
-INSERT INTO `lyj_app` (`id`, `app_id`, `app_secret`, `timeline`)
-VALUES (1, '1383345444', 'e10adc3949ba59abbe56e057f20f883e', 0);
+INSERT INTO `lyj_setting` (`id`, `skey`, `sval`) VALUES (1, 'contact', '李玉江，QQ:1032694760');
+INSERT INTO `lyj_setting` (`id`, `skey`, `sval`)
+VALUES (2, 'seo_title', '标题-PHP_MVC_REST');
+INSERT INTO `lyj_setting` (`id`, `skey`, `sval`)
+VALUES (3, 'seo_keywords', '关键词,PHP_MVC_REST');
+INSERT INTO `lyj_setting` (`id`, `skey`, `sval`) VALUES (4, 'seo_description', '这是PHP_MVC_REST框架示例，结合安卓端开发框架使用');
+INSERT INTO `lyj_setting` (`id`, `skey`, `sval`) VALUES (5, 'copyright', 'Copyright © 穿青人');
 
 --
 -- 栏目表
@@ -75,6 +63,47 @@ CREATE TABLE `lyj_article` (
   COMMENT = '文章表';
 
 INSERT INTO `lyj_article` (`id`, `category_id`, `title`, `content`, `timeline`) VALUES (1, 1, '测试标题', '测试内容', 0);
+
+
+--
+-- 登录令牌表
+--
+DROP TABLE IF EXISTS `lyj_token`;
+CREATE TABLE IF NOT EXISTS `lyj_token` (
+  `id`              INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `user_id`         INT(10) UNSIGNED NOT NULL,
+  `token`           VARCHAR(32)      NOT NULL,
+  `expire_timeline` INT(10)          NOT NULL,
+  `update_timeline` INT(10)          NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `user_id` (`user_id`)
+)
+  ENGINE = MyISAM
+  DEFAULT CHARSET = utf8
+  COMMENT = '登录令牌表';
+
+--
+-- 用户表
+--
+DROP TABLE IF EXISTS `lyj_user`;
+CREATE TABLE IF NOT EXISTS `lyj_user` (
+  `id`        INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `account`   VARCHAR(15)               DEFAULT NULL,
+  `password`  VARCHAR(32)               DEFAULT NULL,
+  `nick`      VARCHAR(15)      NOT NULL,
+  `face`      VARCHAR(255)              DEFAULT NULL,
+  `sex`       INT(2)                    DEFAULT '0',
+  `device_id` VARCHAR(20)      NOT NULL,
+  `timeline`  INT(10)          NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `account` (`account`)
+)
+  ENGINE = MyISAM
+  DEFAULT CHARSET = utf8
+  COMMENT = '用户表';
+
+INSERT INTO `lyj_user` (`id`, `account`, `password`, `nick`, `face`, `sex`, `device_id`, `timeline`)
+VALUES (1, 'admin', 'e10adc3949ba59abbe56e057f20f883e', '穿青人', '', 1, '15244545455', 0);
 
 --
 -- 友链表

@@ -8,17 +8,17 @@
 /**
  * 接口控制器
  */
-abstract class ApiController extends Controller
+class ApiController extends Controller
 {
 
     public function __construct()
     {
-        $access_token = isset($_REQUEST['access_token']) ? $_REQUEST['access_token'] : '';
-        if (empty($access_token)) {
-            $this->noPermission();
-        }
-        if (ApiHelper::checkToken($access_token)) {
-            $this->noPermission();
+        if (ApiCOnfig::NEED_ACCESS_TOKEN)
+        {
+            $access_token = isset($_REQUEST['access_token']) ? $_REQUEST['access_token'] : '';
+            if (!ApiHelper::accessTokenValid($access_token)) {
+                $this->noPermission();
+            }
         }
     }
 
@@ -41,13 +41,25 @@ abstract class ApiController extends Controller
         }
     }
 
-    public abstract function get();
+    public function get()
+    {
+        $this->noPermission();
+    }
 
-    public abstract function post();
+    public function post()
+    {
+        $this->noPermission();
+    }
 
-    public abstract function put();
+    public function put()
+    {
+        $this->noPermission();
+    }
 
-    public abstract function delete();
+    public function delete()
+    {
+        $this->noPermission();
+    }
 
     /**
      * 返回JSON数据
@@ -68,7 +80,7 @@ abstract class ApiController extends Controller
 
     protected function noPermission()
     {
-        //$this->responseJson(0, "没有权限访问");
+        $this->responseJson(0, "没有权限访问");
     }
 
 }

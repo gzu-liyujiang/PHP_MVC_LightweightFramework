@@ -5,7 +5,6 @@ PHP_MVC_REST作为一个极其轻量级MVC&amp;API开发框架，是本人多年
 极其轻量——核心代码几十KB，不到100KB。   
 单一入口——所有URL都是基于index.php，格式：http://{host}/{path}/index.php?c={controller}&a={action}&key1=value1&key2=value2...   
 结构清晰——使用MVC模式，分三个主目录，分前台后台，分普通网页及数据接口。   
-易学易用——按照示例依样画葫芦，相信很快就能上手。   
 兼容性好——支持linux/windows+apache+mysql+php(lamp及wamp)、windows+iis+php、android+lighttp+mysql+php(almp)等常见环境。   
 免费开源——使用GPL协议，欢迎使用。   
 
@@ -45,16 +44,6 @@ class UpgradeController extends ApiController
     public function post()
     {
         $this->get();
-    }
-
-    public function put()
-    {
-        // TODO: Implement put() method.
-    }
-
-    public function delete()
-    {
-        // TODO: Implement delete() method.
     }
 
 }

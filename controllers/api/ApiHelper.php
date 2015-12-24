@@ -9,12 +9,12 @@ class ApiHelper
 {
 
     /**
-     * 检测token状态
+     * 检测access_token是否有效
      *
      * @param $token
      * @return array|bool
      */
-    public static function checkToken($token)
+    public static function accessTokenValid($token)
     {
         if (empty($token)) {
             Logger::getInstance()->warn("Token为空");

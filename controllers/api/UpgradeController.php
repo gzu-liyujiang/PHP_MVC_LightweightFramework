@@ -32,14 +32,4 @@ class UpgradeController extends ApiController
         $this->get();
     }
 
-    public function put()
-    {
-        // TODO: Implement put() method.
-    }
-
-    public function delete()
-    {
-        // TODO: Implement delete() method.
-    }
-
 }
