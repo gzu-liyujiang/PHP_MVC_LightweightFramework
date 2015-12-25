@@ -8,12 +8,22 @@
 class UpgradeController extends ApiController
 {
 
+    /**
+     * 返回的参数说明：
+     * patch——是否补丁包
+     * enforce——是否强制下载最新版本
+     * versionName——最新版本名称
+     * versionCode——最新版本代号
+     * content——最新版本说明
+     * url——最新版本安装包
+     */
     public function get()
     {
         $data = array(
+            'patch' => 0,
+            'enforce' => 0,
             'versionName' => 'V1.3.4',
             'versionCode' => 10,
-            'enforce' => 0,
             'content' => 'V1.3.4，建议升级：
             支持导入已使用过的讯飞、搜狗及百度皮肤；
             支持直接编辑已制作好的讯飞、搜狗及百度皮肤；
