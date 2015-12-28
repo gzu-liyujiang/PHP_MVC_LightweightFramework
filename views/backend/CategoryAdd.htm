@@ -1,72 +1,58 @@
 ﻿<!--{template Header.htm}-->
-<style type="text/css">
-	.mui-content {
-		padding: 10px;
-		background: transparent;
-	}
-	.mui-input-group .mui-input-row::after {
-		left: 0px;
-	}
-	.mui-input-group::before,
-	.mui-input-group::after {
-		height: 0px;
-	}
-	.mui-btn {
-		padding: 5px;
-	}
-	h5 {
-		margin: 5px 7px;
-	}
-</style>
 <header class="mui-bar mui-bar-nav">
-	<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" href="javascript:history.back();"></a>
-	<h1 class="mui-title">{$title}</h1>
+    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" href="javascript:history.back();"></a>
+
+    <h1 class="mui-title">{$title}</h1>
 </header>
 <div class="mui-content">
-	<form class="mui-input-group">
-		<h5>名称：</h5>
-		<div class="mui-input-row">
-			<input type="text" id="category_name" name="category_name" maxlength="50" placeholder="50字以内" class="mui-input-clear mui-input" />
-		</div>
-		<h5>排序：</h5>
-		<div class="mui-input-row">
-			<input type="number" id="category_sortby" name="category_sortby" value="0" class="mui-input-clear mui-input" />
-		</div>
-	</form>
-	<div class="mui-content-padded">
-		<button class="mui-btn mui-btn-block mui-btn-primary" onclick="categoryAdd()">添加</button>
-	</div>
-	<div class="loader hide"></div>
+    <form class="mui-input-group">
+        <h5>名称：</h5>
+
+        <div class="mui-input-row">
+            <input type="text" id="category_name" name="category_name" maxlength="50" placeholder="50字以内"
+                   class="mui-input-clear mui-input"/>
+        </div>
+        <h5>排序：</h5>
+
+        <div class="mui-input-row">
+            <input type="number" id="category_sortby" name="category_sortby" value="0"
+                   class="mui-input-clear mui-input"/>
+        </div>
+    </form>
+    <div class="mui-content-padded">
+        <button class="mui-btn mui-btn-block mui-btn-primary" onclick="categoryAdd()">添加</button>
+    </div>
+    <div class="loader hide"></div>
 </div>
 <script type="text/javascript">
-	function categoryAdd() {
-		var name = jQuery.trim(jQuery("#category_name").val());
-		var sortby = jQuery.trim(jQuery("#category_sortby").val());
-		if (name == "") {
-			alert("名称不能为空！");
-			//noinspection JSValidateTypes
-			return false;
-		} else if (!jQuery.isNumeric(sortby)) {
-			alert("排序只能为数字！");
-			//noinspection JSValidateTypes
-			return false;
-		}
-		jQuery(".loader").show();
-		name = encodeURIComponent(name);
-		jQuery.post("./admin.php?c=CategoryManage&a=add", {
-			token: '{$token}',
-			name: name,
-			sortby: sortby
-		}, function(result) {
-			jQuery(".loader").hide();
-			if (confirm(result + "\n需要继续添加吗？")) {
-				window.location = "./admin.php?c=CategoryManage&a=add&token={$token}";
-			} else {
-				window.location = "./admin.php?c=CategoryManage&token={$token}";
-			}
-		}, "text");
-		//noinspection JSValidateTypes
-		return false; //阻止表单提交
-	}
+    function categoryAdd() {
+        var name = jQuery.trim(jQuery("#category_name").val());
+        var sortby = jQuery.trim(jQuery("#category_sortby").val());
+        if (name == "") {
+            alert("名称不能为空！");
+            //noinspection JSValidateTypes
+            return false;
+        } else if (!jQuery.isNumeric(sortby)) {
+            alert("排序只能为数字！");
+            //noinspection JSValidateTypes
+            return false;
+        }
+        jQuery(".loader").show();
+        name = encodeURIComponent(name);
+        jQuery.post("./admin.php?c=CategoryManage&a=add", {
+            token: '{$token}',
+            name: name,
+            sortby: sortby
+        }, function (result) {
+            jQuery(".loader").hide();
+            if (confirm(result + "\n需要继续添加吗？")) {
+                window.location = "./admin.php?c=CategoryManage&a=add&token={$token}";
+            } else {
+                window.location = "./admin.php?c=CategoryManage&token={$token}";
+            }
+        }, "text");
+        //noinspection JSValidateTypes
+        return false; //阻止表单提交
+    }
 </script>
 <!--{template Footer.htm}-->

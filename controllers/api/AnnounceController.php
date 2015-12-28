@@ -18,7 +18,7 @@ class AnnounceController extends ApiController
      * position——图标位置：0-8，依次为左上、左中、左下、顶中、正中、底中、右上、右中、右下
      * title——标题
      * content——内容
-     * url——type为文本及图片时代表http、mqqwpa、tel、mailto等地址，type为音乐或SVG时代表音频文件或SVG文件地址
+     * url——type为文本及图片时代表http、intent、mqqwpa、tel、mailto等地址
      * expire——有效期，单位为小时
      */
     public function get()
@@ -26,19 +26,19 @@ class AnnounceController extends ApiController
         $base_url = Flight::getInstance()->get('base_url');
         $mouth = intval(date('m'));
         $day = intval(date('d'));
-        $random = 1234567805;
+        $random = 1234567806;
         $type = 1;
-        $icon = $base_url . '/data/announce/default.gif';
-        $postion = 5;
+        $icon = $base_url . '/data/announce/default.png';
+        $position = 7;
         $title = '温馨提示';
         $content = '在使用过程中，如果出现奔溃，建议点击发送日志给开发者以便帮助改善软件……';
         $url = $base_url . '/data/announce/default.svg';
-        $expire = 7*24;
+        $expire = 7 * 24;
         $data = array(
             'random' => $random,
             'type' => $type,
             'icon' => $icon,
-            'postion' => $postion,
+            'position' => $position,
             'title' => $title,
             'content' => $content,
             'url' => $url,

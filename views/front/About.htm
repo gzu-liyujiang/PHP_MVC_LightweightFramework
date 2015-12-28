@@ -1,38 +1,33 @@
 ﻿<!--{template Header.htm}-->
-<style type="text/css">
-	.mui-content {
-		padding: 10px;
-		background: transparent;
-	}
-	.mui-btn {
-		padding: 10px;
-	}
-</style>
 <script type="text/javascript">
-	function showSoftwareInfo() {
-		try {
-			var info = JSON.parse(window.liyujiang.getSoftwareInfo());
-			alert(info.appName + " v" + info.versionName);
-		} catch (e) {
-			//alert(e.toString());
-		}
-	}
+    function showSoftwareInfo() {
+        try {
+            var info = JSON.parse(window.liyujiang.getSoftwareInfo());
+            alert(info.appName + " v" + info.versionName);
+        } catch (e) {
+            //alert(e.toString());
+        }
+    }
 </script>
+<header class="mui-bar mui-bar-nav">
+    <h1 class="mui-title">{$title}</h1>
+</header>
 <div class="mui-content">
-	<h5 class="center"><img src="./views/assets/img/icon.png" width="180" height="180" alt="输入法皮肤控" onclick="showSoftwareInfo()" /></h5>
-	<p style="text-indent: 2em;">
-		安卓上的手机输入法皮肤编辑器——输入法皮肤控，难免会有各种bug，欢迎童鞋们使用后向作者反馈遇到的问题或建议，一起不断完善它……
-	</p>
+    <h5 class="center"><img src="./views/assets/img/icon.png" width="180" height="180" alt="输入法皮肤控"
+                            onclick="showSoftwareInfo()"/></h5>
 
-	<p>
-		<a href="mqqapi://card/show_pslcard?src_type=internal&version=1&uin=466652974&card_type=group&source=qrcode" class="mui-btn mui-btn-block">QQ交流群：466652974</a>
-	</p>
+    <p style="text-indent: 2em;">
+        安卓上的手机输入法皮肤编辑器——输入法皮肤控，难免会有各种bug，欢迎童鞋们使用后向作者反馈遇到的问题或建议，一起不断完善它……
+    </p>
 
-	<p>
-		<a href="mqqwpa://im/chat?chat_type=wpa&uin=1032694760&version=1" class="mui-btn mui-btn-block">反馈QQ：1032694760</a>
-	</p>
-	<p>
-		<a href="mqqwpa://im/chat?chat_type=wpa&uin=920589758&version=1" class="mui-btn mui-btn-block">答疑QQ：920589758</a>
-	</p>
+    <p>
+        <a href="mqqapi://card/show_pslcard?src_type=internal&version=1&uin=466652974&card_type=group&source=qrcode"
+           class="mui-btn mui-btn-block">QQ交流群：466652974</a>
+    </p>
+
+    <p>
+        <a href="mqqwpa://im/chat?chat_type=wpa&uin=1032694760&version=1"
+           class="mui-btn mui-btn-block">反馈QQ：1032694760</a>
+    </p>
 </div>
 <!--{template Footer.htm}-->

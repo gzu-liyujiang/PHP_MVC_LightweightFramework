@@ -1,74 +1,63 @@
 <!--{template Header.htm}-->
-<style type="text/css">
-	.mui-content {
-		padding: 10px;
-		background: transparent;
-	}
-	.mui-table-view-cell:after {
-		left: 1px;
-	}
-	.content {
-		margin-top: 45px;
-	}
-</style>
 <header class="mui-bar mui-bar-nav">
-	<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" href="javascript:history.back();"></a>
-	<h1 class="mui-title">{$title}</h1>
+    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" href="javascript:history.back();"></a>
+
+    <h1 class="mui-title">{$title}</h1>
 </header>
-<!--{eval $count = isset($links) ? count($links) : 0;}-->
-<!--{if $count < 1}-->
 <div class="mui-content">
-	<br />
-	<p class="center hint">暂时还没有友情链接，<a href="./admin.php?c=LinkManage&a=add&token={$token}" class="active">点此添加</a>一个吧！</p>
+    <!--{eval $count = isset($links) ? count($links) : 0;}-->
+    <!--{if $count < 1}-->
+    <p class="center hint">暂时还没有友情链接，<a href="./admin.php?c=LinkManage&a=add&token={$token}" class="active">点此添加</a>一个吧！
+    </p>
+    <!--{else}-->
+    <ul class="mui-table-view content">
+        <!--{eval $page_size = 7;}-->
+        <!--{eval $page_index = isset($_GET['page']) ? intval($_GET['page']) : 1;}-->
+        <!--{eval $pager = new Pager($count, $page_index, $page_size);}-->
+        <!--{for $i=$pager->getStartNum(); $i<=$pager->getEndNum(); $i++}-->
+        <li class="mui-table-view-cell mui-media">
+            <a href="{$links[$i-1]['url']}" target="_blank" id="link_{$links[$i-1]['id']}">
+                <div class="mui-media-body mui-pull-left">
+                    <!--{$i}-->、
+                    <!--{eval echo Ubb::decode($links[$i-1]['name']);}-->
+                    <p class='mui-ellipsis'>
+                        <a href="./admin.php?c=LinkManage&a=modify&token={$token}&id={$links[$i-1]['id']}">编辑</a> |
+                        <a href="javascript:linkDelete({$links[$i-1]['id']});">删除</a>
+                    </p>
+                </div>
+                <img class="mui-media-object mui-pull-right" src="{$links[$i-1]['icon']}" width="50" height="40">
+            </a>
+        </li>
+        <!--{/for}-->
+    </ul>
+    <!--{if $count > $page_size}-->
+    <ul class="mui-pager">
+        <li>
+            <!--{$pager->getPrevPage()}-->
+        </li>
+        <li>
+            <!--{$pager->getNextPage()}-->
+        </li>
+        <li>
+            <span><!--{$page_index}-->/<!--{$pager->getPageNum()}--></span>
+        </li>
+    </ul>
+    <!--{/if}-->
+    <!--{/if}-->
 </div>
-<!--{else}-->
-<ul class="mui-table-view content">
-	<!--{eval $page_size = 7;}-->
-	<!--{eval $page_index = isset($_GET['page']) ? intval($_GET['page']) : 1;}-->
-	<!--{eval $pager = new Pager($count, $page_index, $page_size);}-->
-	<!--{for $i=$pager->getStartNum(); $i<=$pager->getEndNum(); $i++}-->
-	<li class="mui-table-view-cell mui-media">
-		<a href="{$links[$i-1]['url']}" target="_blank" id="link_{$links[$i-1]['id']}">
-			<div class="mui-media-body mui-pull-left">
-				<!--{$i}-->、
-				<!--{eval echo Ubb::decode($links[$i-1]['name']);}-->
-				<p class='mui-ellipsis'>
-					<a href="./admin.php?c=LinkManage&a=modify&token={$token}&id={$links[$i-1]['id']}">编辑</a> |
-					<a href="javascript:linkDelete({$links[$i-1]['id']});">删除</a>
-				</p>
-			</div>
-			<img class="mui-media-object mui-pull-right" src="{$links[$i-1]['icon']}" width="50" height="40">
-		</a>
-	</li>
-	<!--{/for}-->
-</ul>
-<!--{if $count > $page_size}-->
-<ul class="mui-pager">
-	<li>
-		<!--{$pager->getPrevPage()}-->
-	</li>
-	<li>
-		<!--{$pager->getNextPage()}-->
-	</li>
-	<li>
-		<span><!--{$page_index}-->/<!--{$pager->getPageNum()}--></span>
-	</li>
-</ul>
-<!--{/if}-->
-<!--{/if}-->
 <script type="text/javascript">
-	function linkDelete(id) {
-		var url = jjQuery.trim(Query("#link_" + id).text());
-		if (confirm("真的要删除《" + url + "》吗？\n删除后不可恢复，请谨慎操作！")) {
-			jQuery.post("./admin.php?c=LinkManage&a=delete&id=" + id, {
-				token: '{$token}'
-			}, function(result) {
-				alert(result);
-				if (result.lastIndexOf("成功") != -1) {
-					window.location.reload();
-				}
-			}, "text");
-		}
-	}
+    function linkDelete(id) {
+        var url = jQuery.trim(jQuery("#link_" + id).text());
+        if (confirm("真的要删除《" + url + "》吗？\n删除后不可恢复，请谨慎操作！")) {
+            jQuery.post("./admin.php?c=LinkManage&a=delete&id=" + id, {
+                token: '{$token}'
+            }, function (result) {
+                alert(result);
+                if (result.lastIndexOf("成功") != -1) {
+                    window.location.reload();
+                }
+            }, "text");
+        }
+    }
 </script>
 <!--{template Footer.htm}-->

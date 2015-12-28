@@ -1,73 +1,64 @@
 ﻿<!--{template Header.htm}-->
-<style type="text/css">
-	.mui-content {
-		padding: 10px;
-		background: transparent;
-	}
-	.mui-table-view-cell:after {
-		left: 1px;
-	}
-	.content {
-		margin-top: 45px;
-	}
-</style>
 <header class="mui-bar mui-bar-nav">
-	<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" href="javascript:history.back();"></a>
-	<h1 class="mui-title">{$title}</h1>
+    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" href="javascript:history.back();"></a>
+
+    <h1 class="mui-title">{$title}</h1>
 </header>
-<!--{eval $count = isset($articles) ? count($articles) : 0;}-->
-<!--{if $count < 1}-->
 <div class="mui-content">
-	<br />
-	<p class="center hint">暂时还没有文章，<a href="./admin.php?c=ArticleManage&a=add&token={$token}" class="active">点此添加</a>一篇吧！</p>
+    <!--{eval $count = isset($articles) ? count($articles) : 0;}-->
+    <!--{if $count < 1}-->
+    <p class="center hint">暂时还没有文章，<a href="./admin.php?c=ArticleManage&a=add&token={$token}" class="active">点此添加</a>一篇吧！
+    </p>
+    <!--{else}-->
+    <ul class="mui-table-view content">
+        <!--{eval $page_size = 7;}-->
+        <!--{eval $page_index = isset($_GET['page']) ? intval($_GET['page']) : 1;}-->
+        <!--{eval $pager = new Pager($count, $page_index, $page_size);}-->
+        <!--{for $i=$pager->getStartNum(); $i<=$pager->getEndNum(); $i++}-->
+        <li class="mui-table-view-cell mui-media">
+            <div class="mui-media-body">
+                <!--{$i}-->、
+                <a href="./index.php?c=Article&a=detail&id={$articles[$i-1]['id']}" target="_blank"
+                   id="article_{$articles[$i-1]['id']}">
+                    <!--{eval echo Ubb::decode($articles[$i-1]['title']);}-->
+                </a>
+
+                <p class='mui-ellipsis'>
+                    <a href="./admin.php?c=ArticleManage&a=modify&token={$token}&id={$articles[$i-1]['id']}">编辑</a> |
+                    <a href="javascript:articleDelete({$articles[$i-1]['id']});">删除</a>
+                </p>
+            </div>
+        </li>
+        <!--{/for}-->
+    </ul>
+    <!--{if $count > $page_size}-->
+    <ul class="mui-pager">
+        <li>
+            <!--{$pager->getPrevPage()}-->
+        </li>
+        <li>
+            <!--{$pager->getNextPage()}-->
+        </li>
+        <li>
+            <span><!--{$page_index}-->/<!--{$pager->getPageNum()}--></span>
+        </li>
+    </ul>
+    <!--{/if}-->
+    <!--{/if}-->
 </div>
-<!--{else}-->
-<ul class="mui-table-view content">
-	<!--{eval $page_size = 7;}-->
-	<!--{eval $page_index = isset($_GET['page']) ? intval($_GET['page']) : 1;}-->
-	<!--{eval $pager = new Pager($count, $page_index, $page_size);}-->
-	<!--{for $i=$pager->getStartNum(); $i<=$pager->getEndNum(); $i++}-->
-	<li class="mui-table-view-cell mui-media">
-		<div class="mui-media-body">
-			<!--{$i}-->、
-			<a href="./index.php?c=Article&a=detail&id={$articles[$i-1]['id']}" target="_blank" id="article_{$articles[$i-1]['id']}">
-				<!--{eval echo Ubb::decode($articles[$i-1]['title']);}-->
-			</a>
-			<p class='mui-ellipsis'>
-				<a href="./admin.php?c=ArticleManage&a=modify&token={$token}&id={$articles[$i-1]['id']}">编辑</a> |
-				<a href="javascript:articleDelete({$articles[$i-1]['id']});">删除</a>
-			</p>
-		</div>
-	</li>
-	<!--{/for}-->
-</ul>
-<!--{if $count > $page_size}-->
-<ul class="mui-pager">
-	<li>
-		<!--{$pager->getPrevPage()}-->
-	</li>
-	<li>
-		<!--{$pager->getNextPage()}-->
-	</li>
-	<li>
-		<span><!--{$page_index}-->/<!--{$pager->getPageNum()}--></span>
-	</li>
-</ul>
-<!--{/if}-->
-<!--{/if}-->
 <script type="text/javascript">
-	function articleDelete(id) {
-		var title = jQuery.trim(jQuery("#article_" + id).text());
-		if (confirm("真的要删除《" + title + "》吗？\n删除后不可恢复，请谨慎操作！")) {
-			jQuery.post("./admin.php?c=ArticleManage&a=delete&id=" + id, {
-				token: '{$token}'
-			}, function(result) {
-				alert(result);
-				if (result.lastIndexOf("成功") != -1) {
-					window.location.reload();
-				}
-			}, "text");
-		}
-	}
+    function articleDelete(id) {
+        var title = jQuery.trim(jQuery("#article_" + id).text());
+        if (confirm("真的要删除《" + title + "》吗？\n删除后不可恢复，请谨慎操作！")) {
+            jQuery.post("./admin.php?c=ArticleManage&a=delete&id=" + id, {
+                token: '{$token}'
+            }, function (result) {
+                alert(result);
+                if (result.lastIndexOf("成功") != -1) {
+                    window.location.reload();
+                }
+            }, "text");
+        }
+    }
 </script>
 <!--{template Footer.htm}-->

@@ -1,64 +1,53 @@
 <!--{template Header.htm}-->
-<style type="text/css">
-	.mui-content {
-		padding: 10px;
-		background: transparent;
-	}
-	.mui-table-view-cell:after {
-		left: 1px;
-	}
-	#search {
-		width: 70%;
-	}
-</style>
 <header class="mui-bar mui-bar-nav">
-	<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" href="javascript:history.back();"></a>
-	<h1 class="mui-title">{$title}</h1>
+    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" href="javascript:history.back();"></a>
+
+    <h1 class="mui-title">{$title}</h1>
 </header>
 <!--{eval $count = isset($articles) ? count($articles) : 0;}-->
 <!--{if $count < 1}-->
 <div class="mui-content">
-	<br />
-	<p class="center hint">没有找到与“<span style="color:#ff0000;"><!--{$keyword}--></span>”相关的记录！</p>
+    <p class="center hint">没有找到与“<span style="color:#ff0000;"><!--{$keyword}--></span>”相关的记录！</p>
 </div>
 <!--{else}-->
 <p class="center hint">共找到<b><!--{$count}--></b>条与“<span style="color:#ff0000;"><!--{$keyword}--></span>”相关的记录！</p>
 <ul class="mui-table-view">
-	<!--{eval $page_size = 7;}-->
-	<!--{eval $page_index = isset($_GET['page']) ? intval($_GET['page']) : 1;}-->
-	<!--{eval $pager = new Pager($count, $page_index, $page_size);}-->
-	<!--{for $i=$pager->getStartNum(); $i<=$pager->getEndNum(); $i++}-->
-	<!--搜索词高亮-->
-	<!--{if stristr($articles[$i-1]['title'],$keyword)}-->
-	<!--{eval $title = strip_tags($articles[$i-1]['title']);}-->
-	<!--{else}-->
-	<!--{eval $title = mb_substr(strip_tags($articles[$i-1]['content']),0,8,'utf-8') . '……' . $keyword . '……';}-->
-	<!--{/if}-->
-	<!--{eval $title = Ubb::decode(str_ireplace($keyword,'<span style="color:#ff0000;">'.$keyword.'</span>',$title));}-->
-	<li class="mui-table-view-cell mui-media">
-		<div class="mui-media-body">
-			<!--{$i}-->、
-			<a href="./index.php?c=Article&a=detail&id={$articles[$i-1]['id']}" id="article_{$articles[$i-1]['id']}">
-				<!--{eval echo Ubb::decode($articles[$i-1]['title']);}-->
-			</a>
-			<p class='mui-ellipsis'>
-				<!--{eval echo date('m月d日 H:i',$articles[$i-1]['timeline']);}-->
-			</p>
-		</div>
-	</li>
-	<!--{/for}-->
+    <!--{eval $page_size = 7;}-->
+    <!--{eval $page_index = isset($_GET['page']) ? intval($_GET['page']) : 1;}-->
+    <!--{eval $pager = new Pager($count, $page_index, $page_size);}-->
+    <!--{for $i=$pager->getStartNum(); $i<=$pager->getEndNum(); $i++}-->
+    <!--搜索词高亮-->
+    <!--{if stristr($articles[$i-1]['title'],$keyword)}-->
+    <!--{eval $title = strip_tags($articles[$i-1]['title']);}-->
+    <!--{else}-->
+    <!--{eval $title = mb_substr(strip_tags($articles[$i-1]['content']),0,8,'utf-8') . '……' . $keyword . '……';}-->
+    <!--{/if}-->
+    <!--{eval $title = Ubb::decode(str_ireplace($keyword,'<span style="color:#ff0000;">'.$keyword.'</span>',$title));}-->
+    <li class="mui-table-view-cell mui-media">
+        <div class="mui-media-body">
+            <!--{$i}-->、
+            <a href="./index.php?c=Article&a=detail&id={$articles[$i-1]['id']}" id="article_{$articles[$i-1]['id']}">
+                <!--{eval echo Ubb::decode($articles[$i-1]['title']);}-->
+            </a>
+
+            <p class='mui-ellipsis'>
+                <!--{eval echo date('m月d日 H:i',$articles[$i-1]['timeline']);}-->
+            </p>
+        </div>
+    </li>
+    <!--{/for}-->
 </ul>
 <!--{if $count > $page_size}-->
 <ul class="mui-pager">
-	<li>
-		<!--{$pager->getPrevPage()}-->
-	</li>
-	<li>
-		<!--{$pager->getNextPage()}-->
-	</li>
-	<li>
-		<span><!--{$page_index}-->/<!--{$pager->getPageNum()}--></span>
-	</li>
+    <li>
+        <!--{$pager->getPrevPage()}-->
+    </li>
+    <li>
+        <!--{$pager->getNextPage()}-->
+    </li>
+    <li>
+        <span><!--{$page_index}-->/<!--{$pager->getPageNum()}--></span>
+    </li>
 </ul>
 <!--{/if}-->
 <!--{/if}-->

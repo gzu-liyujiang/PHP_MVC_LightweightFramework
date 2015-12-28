@@ -1,23 +1,15 @@
 <!--{template Header.htm}-->
-<style type="text/css">
-	.mui-content {
-		padding: 10px;
-		background: transparent;
-	}
-	.mui-btn {
-		padding: 10px;
-	}
-</style>
 <header class="mui-bar mui-bar-nav">
-	<h1 class="mui-title">{eval echo Ubb::decode($title);}</h1>
+    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" href="javascript:history.back();"></a>
+
+    <h1 class="mui-title">{eval echo Ubb::decode($title);}</h1>
 </header>
 <div class="mui-content">
-	<div class="mui-content-padded">
-		<a class="mui-pull-left" href="javascript:history.back();">返回</a> &nbsp;&nbsp;
-		<span class="mui-pull-right"><!--{eval echo Helper::formatTimestamp($timeline);}--></span>
-	</div>
-	<div class="indent">
-		<!--{$content}-->
-	</div>
+    <div class="mui-content-padded">
+        <span class="mui-pull-right"><!--{eval echo Helper::formatTimestamp($timeline);}--></span>
+    </div>
+    <div class="indent">
+        <!--{$content}-->
+    </div>
 </div>
 <!--{template Footer.htm}-->

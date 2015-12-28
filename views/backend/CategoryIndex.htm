@@ -1,61 +1,47 @@
 <!--{template Header.htm}-->
-<style type="text/css">
-	.mui-content {
-		padding: 10px;
-		background: transparent;
-	}
-	.mui-table-view:after {
-		height: 0px;
-		background-color: transparent;
-	}
-	.mui-table-view {
-		margin-top: 45px;
-	}
-	.mui-table-view-cell:after {
-		left: 1px;
-	}
-</style>
 <header class="mui-bar mui-bar-nav">
-	<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" href="javascript:history.back();"></a>
-	<h1 class="mui-title">{$title}</h1>
+    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" href="javascript:history.back();"></a>
+
+    <h1 class="mui-title">{$title}</h1>
 </header>
-<!--{eval $count = isset($categories) ? count($categories) : 0;}-->
-<!--{if $count < 1}-->
 <div class="mui-content">
-	<br />
-	<p class="center hint">暂时还没有分类，<a href="./admin.php?c=CategoryManage&a=add&token={$token}" class="active">点此添加</a>一个吧！</p>
+    <!--{eval $count = isset($categories) ? count($categories) : 0;}-->
+    <!--{if $count < 1}-->
+    <p class="center hint">暂时还没有分类，<a href="./admin.php?c=CategoryManage&a=add&token={$token}" class="active">点此添加</a>一个吧！
+    </p>
+    <!--{else}-->
+    <ul class="mui-table-view">
+        <!--{eval $i = 0;}-->
+        <!--{foreach $categories as $category}-->
+        <!--{eval $i++;}-->
+        <li class="mui-table-view-cell mui-media">
+            <div class="mui-media-body">
+                <!--{$i}-->、
+                <span id="category_{$category['id']}"><!--{$category['name']}--></span>
+
+                <p class='mui-ellipsis'>
+                    <a href="./admin.php?c=CategoryManage&a=modify&token={$token}&id={$category['id']}">编辑</a> |
+                    <a href="javascript:categoryDelete({$category['id']});">删除</a>
+                </p>
+            </div>
+        </li>
+        <!--{/foreach}-->
+    </ul>
+    <!--{/if}-->
 </div>
-<!--{else}-->
-<ul class="mui-table-view">
-	<!--{eval $i = 0;}-->
-	<!--{foreach $categories as $category}-->
-	<!--{eval $i++;}-->
-	<li class="mui-table-view-cell mui-media">
-		<div class="mui-media-body">
-			<!--{$i}-->、
-			<span id="category_{$category['id']}"><!--{$category['name']}--></span>
-			<p class='mui-ellipsis'>
-				<a href="./admin.php?c=CategoryManage&a=modify&token={$token}&id={$category['id']}">编辑</a> |
-				<a href="javascript:categoryDelete({$category['id']});">删除</a>
-			</p>
-		</div>
-	</li>
-	<!--{/foreach}-->
-</ul>
-<!--{/if}-->
 <script type="text/javascript">
-	function categoryDelete(id) {
-		var name = jQuery("#category_" + id).text();
-		if (confirm("真的要删除《" + name + "》吗？\n删除后不可恢复，请谨慎操作！")) {
-			jQuery.post("./admin.php?c=CategoryManage&a=delete&id=" + id, {
-				token: '{$token}'
-			}, function(result) {
-				alert(result);
-				if (result.lastIndexOf("成功") != -1) {
-					window.location.reload();
-				}
-			}, "text");
-		}
-	}
+    function categoryDelete(id) {
+        var name = jQuery("#category_" + id).text();
+        if (confirm("真的要删除《" + name + "》吗？\n删除后不可恢复，请谨慎操作！")) {
+            jQuery.post("./admin.php?c=CategoryManage&a=delete&id=" + id, {
+                token: '{$token}'
+            }, function (result) {
+                alert(result);
+                if (result.lastIndexOf("成功") != -1) {
+                    window.location.reload();
+                }
+            }, "text");
+        }
+    }
 </script>
 <!--{template Footer.htm}-->

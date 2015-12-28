@@ -1,7 +1,8 @@
 <?php
 
 /**
- * 服务端日志类，参考phx框架（https://github.com/phoenixg/phx）的Log类
+ * 服务端日志类，参考phx框架的Log类
+ * @link https://github.com/phoenixg/phx
  * 用法：
  * $logger = Logger::getInstance();
  * $logger->debug('debug message');

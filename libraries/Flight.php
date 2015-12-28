@@ -1,15 +1,16 @@
 <?php
 /**
- * Flight¾«¼òÐÞ¸Ä°æ¡£²Î¼û£ºhttps://github.com/mikecao/flight
+ * Flightç²¾ç®€ä¿®æ”¹ç‰ˆã€‚
+ * @link https://github.com/mikecao/flight
  *
  * @copyright   Copyright (c) 2011, Mike Cao <mike@mikecao.com>
  * @license     MIT, http://flightphp.com/license
  */
 
 /**
- * °üÀ¨£ºÊý¾Ý»º³åÊä³ö¡¢´íÎóÒì³£´¦Àí¡¢È«¾Ö±äÁ¿¹ÜÀí¡¢HTTPÏìÓ¦´¦Àí
+ * åŒ…æ‹¬ï¼šæ•°æ®ç¼“å†²è¾“å‡ºã€é”™è¯¯å¼‚å¸¸å¤„ç†ã€å…¨å±€å˜é‡ç®¡ç†ã€HTTPå“åº”å¤„ç†
  *
- * @author ÀîÓñ½­<liyujiang_tk@yeah.net>
+ * @author æŽçŽ‰æ±Ÿ<liyujiang_tk@yeah.net>
  * @version 2015/7/25
  */
 class Flight

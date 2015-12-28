@@ -19,126 +19,129 @@
     <link type="image/x-icon" rel="icon" href="./favicon.ico"/>
     <link type="image/x-icon" rel="shortcut icon" href="./favicon.ico"/>
     <link href="./views/assets/css/default.css" rel="stylesheet"/>
+    <style type="text/css">
+        body {
+            padding: 0;
+            margin: 0;
+            background: #FFFFFF;
+        }
+
+        a:hover {
+            text-decoration: none;
+        }
+
+        .banner {
+            text-align: center;
+            background-image: url("./views/assets/img/banner_bg.png");
+            background-size: cover;
+            position: relative;
+        }
+
+        .banner img {
+            display: block;
+            margin: 0 auto;
+        }
+
+        .download-button a {
+            color: #9DD532;
+            border: 1px solid #9DD532;
+            background: #fff;
+            text-decoration: none;
+            line-height: 30px;
+            border-radius: 10px;
+            text-align: center;
+            margin: 15px 20px 0;
+            display: block;
+        }
+
+        .download-button a h4 {
+            font-size: 16px;
+            display: inline;
+        }
+
+        .download-button a span {
+            font-size: 12px;
+        }
+
+        .download-recommend a {
+            color: #fff;
+            background: #9DD532;
+        }
+
+        .content {
+            margin-bottom: 20px;
+        }
+
+        .description {
+            text-indent: 2em;
+        }
+
+        .description,
+        .change-log {
+            margin: 20px 5px 15px 5px;
+        }
+
+        .change-log h2 {
+            border-bottom: 1px dashed #ddd;
+            color: #41434a;
+            font-size: 15px;
+            line-height: 36px;
+        }
+
+        .change-log ol {
+            color: #8c8c8c;
+            font-size: 12px;
+            line-height: 22px;
+            list-style-type: decimal;
+            margin-left: 0px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+
+        @media (min-width: 320px) {
+            .banner img {
+                width: 320px;
+            }
+
+            .change-log h2 {
+                font-size: 18px;
+            }
+
+            .change-log ol {
+                font-size: 14px;
+            }
+        }
+
+        @media (min-width: 480px) {
+            .banner img {
+                width: 480px;
+            }
+
+            .change-log h2 {
+                font-size: 20px;
+            }
+
+            .change-log ol {
+                font-size: 16px;
+            }
+        }
+
+        @media (min-width: 720px) {
+            .banner img {
+                width: 720px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 <noscript class="error">
     很遗憾，由于你的浏览器不支持或禁用了JavaScript，导致无法获得正常体验。
 </noscript>
-<style type="text/css">
-    body {
-        padding: 0;
-        margin: 0;
-        background: #FFFFFF;
-    }
-
-    a:hover {
-        text-decoration: none;
-    }
-
-    .banner {
-        text-align: center;
-        background-image: url("./views/assets/img/banner_bg.png");
-        background-size: cover;
-        position: relative;
-    }
-
-    .banner img {
-        display: block;
-        margin: 0 auto;
-    }
-
-    .download-button a {
-        color: #9DD532;
-        border: 1px solid #9DD532;
-        background: #fff;
-        text-decoration: none;
-        line-height: 30px;
-        border-radius: 10px;
-        text-align: center;
-        margin: 15px 20px 0;
-        display: block;
-    }
-
-    .download-button a h4 {
-        font-size: 16px;
-        display: inline;
-    }
-
-    .download-button a span {
-        font-size: 12px;
-    }
-
-    .download-recommend a {
-        color: #fff;
-        background: #9DD532;
-    }
-
-    .content {
-        margin-bottom: 20px;
-    }
-
-    .description {
-        text-indent: 2em;
-    }
-
-    .description,
-    .change-log {
-        margin: 20px 5px 15px 5px;
-    }
-
-    .change-log h2 {
-        border-bottom: 1px dashed #ddd;
-        color: #41434a;
-        font-size: 15px;
-        line-height: 36px;
-    }
-
-    .change-log ol {
-        color: #8c8c8c;
-        font-size: 12px;
-        line-height: 22px;
-        list-style-type: decimal;
-        margin-left: 0px;
-        margin-top: 10px;
-        margin-bottom: 20px;
-    }
-
-    @media (min-width: 320px) {
-        .banner img {
-            width: 320px;
-        }
-
-        .change-log h2 {
-            font-size: 18px;
-        }
-
-        .change-log ol {
-            font-size: 14px;
-        }
-    }
-
-    @media (min-width: 480px) {
-        .banner img {
-            width: 480px;
-        }
-
-        .change-log h2 {
-            font-size: 20px;
-        }
-
-        .change-log ol {
-            font-size: 16px;
-        }
-    }
-
-    @media (min-width: 720px) {
-        .banner img {
-            width: 720px;
-        }
-    }
-</style>
 <script type="text/javascript">
+    /**
+     * 新版本检测
+     */
     setTimeout(function () {
         try {
             var info = JSON.parse(window.liyujiang.getSoftwareInfo());
@@ -148,34 +151,13 @@
                 alert("你当前的版本为v" + info.versionName + "，已经是最新版本，无需升级");
             }
         } catch (e) {
-            //alert(e.toString());
+            //出错了，说明不是用我的安卓APP里自带的浏览器组件打开
         }
     }, 1000);
-
-    function openApp() {
-        //参见：http://www.baidufe.com/item/cc592a4b3382eed8ec6e.html
-        if (navigator.userAgent.match(/liyujiang/i)) {
-            location.href = 'liyujiang://info?name=software';
-            return;
-        }
-        // 通过iframe的方式试图打开APP，如果能正常打开，会直接切换到APP，并自动阻止a标签的默认行为，否则打开a标签的href链接
-        var ifr = document.createElement('iframe');
-        ifr.src = 'liyujiang://launch';
-        ifr.style.display = 'none';
-        document.body.appendChild(ifr);
-        window.setTimeout(function () {
-            document.body.removeChild(ifr);
-            if (navigator.userAgent.match(/android/i)) {
-                alert('亲，还未安装输入法皮肤控哦');
-            } else {
-                alert('亲，快用安卓手机安装试试吧！');
-            }
-        }, 3000);
-    }
 </script>
 <div class="content">
     <div class="banner">
-        <a href="javascript:openApp();"><img alt="." src="./views/assets/img/banner.jpg"/></a>
+        <img alt="." src="./views/assets/img/banner.jpg"/>
     </div>
     <div class="description">
         {$seo_description}

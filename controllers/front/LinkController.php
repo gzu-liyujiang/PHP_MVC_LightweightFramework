@@ -12,7 +12,7 @@ class LinkController extends FrontController
     {
         $this->template->assign('title', '友情推荐');
         $model = new LinkModel();
-        $this->template->assign('links', $model->getLinkList());
+        $this->template->assign('links', $model->getLinkListIncludeCategory());
         $this->template->display('LinkIndex.htm');
     }
 

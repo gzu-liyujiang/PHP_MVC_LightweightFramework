@@ -1,89 +1,75 @@
 <!--{template Header.htm}-->
 <script type="text/javascript" src="./views/assets/js/jquery.qeditor.js"></script>
 <style type="text/css">
-	@import url("http://cdn.staticfile.org/font-awesome/4.0.3/css/font-awesome.min.css");
-	@import url("./views/assets/css/qeditor.css");
-	.mui-content {
-		padding: 10px;
-		background: transparent;
-	}
-	.mui-input-group .mui-input-row::after {
-		left: 0px;
-	}
-	.mui-input-group::before,
-	.mui-input-group::after {
-		height: 0px;
-	}
-	.mui-btn {
-		padding: 5px;
-	}
-	h5 {
-		margin: 5px 7px;
-	}
+    @import url("http://cdn.staticfile.org/font-awesome/4.0.3/css/font-awesome.min.css");
+    @import url("./views/assets/css/qeditor.css");
 </style>
 <header class="mui-bar mui-bar-nav">
-	<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" href="javascript:history.back();"></a>
-	<h1 class="mui-title">修改文章</h1>
+    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" href="javascript:history.back();"></a>
+
+    <h1 class="mui-title">修改文章</h1>
 </header>
 <div class="mui-content">
-	<form class="mui-input-group">
-		<h5>分类：</h5>
-		<div class="mui-input-row">
-			<select name="category" id="category" class="mui-left">
-				<!--{foreach $categories as $category}-->
-				<option value="{$category['id']}" <!--{if $category[ 'id']==$category_id}--> selected="selected"
-					<!--{/if}-->>
-					<!--{$category['name']}-->
-				</option>
-				<!--{/foreach}-->
-			</select>
-		</div>
-		<h5>标题：(支持<a href="./admin.php?c=Ubb" target="_blank">UBB</a>)</h5>
-		<div class="mui-input-row">
-			<input type="text" id="title" name="title" value="{$title}" class="mui-input-clear mui-input" />
-		</div>
-		<h5>内容：</h5>
-		<textarea id="content" name="content" rows="6">{eval echo htmlspecialchars($content);}</textarea>
-	</form>
-	<div class="mui-content-padded">
-		<button class="mui-btn mui-btn-block mui-btn-primary" onclick="articleModify()">保存</button>
-	</div>
-	<div class="loader hide"></div>
+    <form class="mui-input-group">
+        <h5>分类：</h5>
+
+        <div class="mui-input-row">
+            <select name="category" id="category" class="mui-left">
+                <!--{foreach $categories as $category}-->
+                <option value="{$category['id']}" <!--{if $category[ 'id']==$category_id}--> selected="selected"
+                <!--{/if}-->>
+                <!--{$category['name']}-->
+                </option>
+                <!--{/foreach}-->
+            </select>
+        </div>
+        <h5>标题：(支持<a href="./admin.php?c=Ubb" target="_blank">UBB</a>)</h5>
+
+        <div class="mui-input-row">
+            <input type="text" id="title" name="title" value="{$title}" class="mui-input-clear mui-input"/>
+        </div>
+        <h5>内容：</h5>
+        <textarea id="content" name="content" rows="6">{eval echo htmlspecialchars($content);}</textarea>
+    </form>
+    <div class="mui-content-padded">
+        <button class="mui-btn mui-btn-block mui-btn-primary" onclick="articleModify()">保存</button>
+    </div>
+    <div class="loader hide"></div>
 </div>
 <script type="text/javascript">
-	jQuery("#content").qeditor({});
+    jQuery("#content").qeditor({});
 
-	function articleModify() {
-		var category = jQuery.trim(jQuery("#category").val());
-		var title = jQuery.trim(jQuery("#title").val());
-		var content = jQuery.trim(jQuery("#content").val());
-		if (title == "") {
-			alert("标题不能为空！");
-			//noinspection JSValidateTypes
-			return false;
-		} else if (content == "") {
-			alert("内容不能为空！");
-			//noinspection JSValidateTypes
-			return false;
-		}
-		jQuery(".loader").show();
-		title = encodeURIComponent(title);
-		content = encodeURIComponent(content);
-		jQuery.post("./admin.php?c=ArticleManage&a=modify&id={$id}", {
-			token: '{$token}',
-			category: category,
-			title: title,
-			content: content
-		}, function(result) {
-			jQuery(".loader").hide();
-			if (confirm(result + "\n需要重新编辑文章吗？")) {
-				window.location = "./admin.php?c=ArticleManage&a=modify&id={$id}&token={$token}";
-			} else {
-				window.location = "./admin.php?c=ArticleManage&token={$token}";
-			}
-		}, "text");
-		//noinspection JSValidateTypes
-		return false; // 阻止表单提交
-	}
+    function articleModify() {
+        var category = jQuery.trim(jQuery("#category").val());
+        var title = jQuery.trim(jQuery("#title").val());
+        var content = jQuery.trim(jQuery("#content").val());
+        if (title == "") {
+            alert("标题不能为空！");
+            //noinspection JSValidateTypes
+            return false;
+        } else if (content == "") {
+            alert("内容不能为空！");
+            //noinspection JSValidateTypes
+            return false;
+        }
+        jQuery(".loader").show();
+        title = encodeURIComponent(title);
+        content = encodeURIComponent(content);
+        jQuery.post("./admin.php?c=ArticleManage&a=modify&id={$id}", {
+            token: '{$token}',
+            category: category,
+            title: title,
+            content: content
+        }, function (result) {
+            jQuery(".loader").hide();
+            if (confirm(result + "\n需要重新编辑文章吗？")) {
+                window.location = "./admin.php?c=ArticleManage&a=modify&id={$id}&token={$token}";
+            } else {
+                window.location = "./admin.php?c=ArticleManage&token={$token}";
+            }
+        }, "text");
+        //noinspection JSValidateTypes
+        return false; // 阻止表单提交
+    }
 </script>
 <!--{template Footer.htm}-->

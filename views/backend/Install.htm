@@ -1,57 +1,45 @@
 <!--{template Header.htm}-->
-<style type="text/css">
-	.mui-content {
-		padding: 10px;
-		background: transparent;
-	}
-	.mui-input-group .mui-input-row::after {
-		left: 0px;
-	}
-	.mui-input-group::before,
-	.mui-input-group::after {
-		height: 0px;
-	}
-	.mui-btn {
-		padding: 5px;
-	}
-	h5 {
-		margin: 5px 7px;
-	}
-</style>
 <header class="mui-bar mui-bar-nav">
-	<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" href="javascript:history.back();"></a>
-	<h1 class="mui-title">{$title}</h1>
+    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" href="javascript:history.back();"></a>
+
+    <h1 class="mui-title">{$title}</h1>
 </header>
 <div class="mui-content">
-	<form method="post" action="./admin.php?c=install" class="mui-input-group">
-		<h5>类型：</h5>
-		<div class="mui-input-row">
-			<input name="db_type" type="radio" value="mysql" />MySQL
-			<input name="db_type" type="radio" value="mysqli" checked="checked" />MySQLi
-		</div>
-		<h5>主机：</h5>
-		<div class="mui-input-row">
-			<input type="text" name="db_host" value="localhost" class="mui-input mui-input-clear" />
-		</div>
-		<h5>端口：</h5>
-		<div class="mui-input-row">
-			<input type="text" name="db_port" value="3306" class="mui-input mui-input-clear" />
-		</div>
-		<h5>用户：</h5>
-		<div class="mui-input-row">
-			<input type="text" name="db_user" value="root" class="mui-input mui-input-clear" />
-		</div>
-		<h5>密码：</h5>
-		<div class="mui-input-row">
-			<input type="password" name="db_pass" value="" class="mui-input mui-input-clear" />
-		</div>
-		<h5>库名：</h5>
-		<div class="mui-input-row">
-			<input type="text" name="db_name" value="" class="mui-input mui-input-clear" />
-		</div>
-		<div class="center" style="margin-top: 10px;">
-			<input type="submit" style="color: #FF0000;background: #0000BB;" value="安装" />
-		</div>
-	</form>
+    <form method="post" action="./admin.php?c=install" class="mui-input-group">
+        <h5>类型：</h5>
+
+        <div class="mui-input-row">
+            <input name="db_type" type="radio" value="mysql"/>MySQL
+            <input name="db_type" type="radio" value="mysqli" checked="checked"/>MySQLi
+        </div>
+        <h5>主机：</h5>
+
+        <div class="mui-input-row">
+            <input type="text" name="db_host" value="localhost" class="mui-input mui-input-clear"/>
+        </div>
+        <h5>端口：</h5>
+
+        <div class="mui-input-row">
+            <input type="text" name="db_port" value="3306" class="mui-input mui-input-clear"/>
+        </div>
+        <h5>用户：</h5>
+
+        <div class="mui-input-row">
+            <input type="text" name="db_user" value="root" class="mui-input mui-input-clear"/>
+        </div>
+        <h5>密码：</h5>
+
+        <div class="mui-input-row">
+            <input type="password" name="db_pass" value="" class="mui-input mui-input-clear"/>
+        </div>
+        <h5>库名：</h5>
+
+        <div class="mui-input-row">
+            <input type="text" name="db_name" value="" class="mui-input mui-input-clear"/>
+        </div>
+        <div class="center" style="margin-top: 10px;">
+            <input type="submit" style="color: #FF0000;background: #0000BB;" value="安装"/>
+        </div>
+    </form>
 </div>
 <!--{template Footer.htm}-->
