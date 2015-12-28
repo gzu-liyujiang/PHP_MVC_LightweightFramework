@@ -84,12 +84,12 @@ class LinkModel extends Model
 ```php
 class LinkController extends FrontController {
 
-	public function main() {
-		$this -> template -> assign('title', '友情推荐');
-		$model = new LinkModel();
-		$this -> template -> assign('links', $model -> getLinkList());
-		$this -> template -> display('LinkIndex.htm');
-	}
+    public function main() {
+        $this -> template -> assign('title', '友情推荐');
+        $model = new LinkModel();
+        $this -> template -> assign('links', $model -> getLinkList());
+        $this -> template -> display('LinkIndex.htm');
+    }
 
 }
 ```   
@@ -97,41 +97,41 @@ class LinkController extends FrontController {
 <!--{eval $count = isset($links) ? count($links) : 0;}-->
 <!--{if $count < 1}-->
 <div class="mui-content">
-	<br />
-	<p class="center hint">暂时还没有友情链接！</p>
+    <br />
+    <p class="center hint">暂时还没有友情链接！</p>
 </div>
 <!--{else}-->
 <p class="center">下面的也是我们的作品，欢迎使用！</p>
 <ul class="mui-table-view content">
-	<!--{eval $page_size = 7;}-->
-	<!--{eval $page_index = isset($_GET['page']) ? intval($_GET['page']) : 1;}-->
-	<!--{eval $pager = new Pager($count, $page_index, $page_size);}-->
-	<!--{for $i=$pager->getStartNum(); $i<=$pager->getEndNum(); $i++}-->
-	<li class="mui-table-view-cell mui-media">
-		<a href="{$links[$i-1]['url']}" target="_blank" id="link_{$links[$i-1]['id']}">
-			<div class="mui-media-body mui-pull-left">
-				<!--{$i}-->、
-				<!--{eval echo Ubb::decode($links[$i-1]['name']);}-->
-				<p class='mui-ellipsis'>
-					<!--{$links[$i-1]['category_name']}-->
-				</p>
-			</div>
-			<img class="mui-media-object mui-pull-right" src="{$links[$i-1]['icon']}" width="50" height="40">
-		</a>
-	</li>
-	<!--{/for}-->
+    <!--{eval $page_size = 7;}-->
+    <!--{eval $page_index = isset($_GET['page']) ? intval($_GET['page']) : 1;}-->
+    <!--{eval $pager = new Pager($count, $page_index, $page_size);}-->
+    <!--{for $i=$pager->getStartNum(); $i<=$pager->getEndNum(); $i++}-->
+    <li class="mui-table-view-cell mui-media">
+        <a href="{$links[$i-1]['url']}" target="_blank" id="link_{$links[$i-1]['id']}">
+            <div class="mui-media-body mui-pull-left">
+                <!--{$i}-->、
+                <!--{eval echo Ubb::decode($links[$i-1]['name']);}-->
+                <p class='mui-ellipsis'>
+                    <!--{$links[$i-1]['category_name']}-->
+                </p>
+            </div>
+            <img class="mui-media-object mui-pull-right" src="{$links[$i-1]['icon']}" width="50" height="40">
+        </a>
+    </li>
+    <!--{/for}-->
 </ul>
 <!--{if $count > $page_size}-->
 <ul class="mui-pager">
-	<li>
-		<!--{$pager->getPrevPage()}-->
-	</li>
-	<li>
-		<!--{$pager->getNextPage()}-->
-	</li>
-	<li>
-		<span><!--{$page_index}-->/<!--{$pager->getPageNum()}--></span>
-	</li>
+    <li>
+        <!--{$pager->getPrevPage()}-->
+    </li>
+    <li>
+        <!--{$pager->getNextPage()}-->
+    </li>
+    <li>
+        <span><!--{$page_index}-->/<!--{$pager->getPageNum()}--></span>
+    </li>
 </ul>
 <!--{/if}-->
 <!--{/if}-->

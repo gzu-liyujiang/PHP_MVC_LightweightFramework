@@ -1,3 +1,6 @@
-/views/compiled
 /.idea
 /*.iml
+/data
+/config.php
+/views/compiled
+
