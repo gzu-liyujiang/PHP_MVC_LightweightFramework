@@ -1,4 +1,4 @@
-# 关于PHP_MVC_REST   
+# 关于PHP_MVC_API   
 PHP_MVC_REST作为一个极其轻量级MVC&amp;API开发框架，是本人多年的php开发经验总结，不断吸取参考了flight、phx、discuz、punbb等开源项目的优点，最终形成独具自己风格的快速开发框架。目前我主要用于服务端应用程序接口开发，提供API和移动APP进行数据交换。   
 
 # 主要特性(Main Features)   
