@@ -5,6 +5,7 @@
 
 header("Content-Type:text/html;charset=utf-8");
 if (PHP_VERSION < 5.3) {
+    //计划使用命名空间，届时只支持php5.3+
     //5.3+新特性：namespace、callStatic、__DIR__等
     //exit('本程序需运行在PHP5.3+的环境上，当前的PHP版本为：' . PHP_VERSION);
 }
@@ -55,6 +56,6 @@ function __autoload($class)
 //保存一些全局变量
 Flight::getInstance()->set(@include(ROOT_PATH . '/config.php'));
 
-//启动框架
+//启动框架，执行“Helper::initial()”进行初始化
 Flight::getInstance()->start(array("Helper", "initial"));
 ?>

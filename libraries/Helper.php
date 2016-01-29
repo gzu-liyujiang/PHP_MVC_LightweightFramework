@@ -49,7 +49,38 @@ final class Helper
             exit('the class or method is not found: ' . $class . '->' . $method . '()');
         }
     }
-
+    
+/**
+ * 解析路径信息
+ */ 
+private static function parsePathInfo(){
+    if (isset($_SERVER['path_info'])){
+        //获取pathinfo
+        $pathinfo = explode('/', trim($_SERVER['path_info'], '/'));
+         //获取control
+         $_GET['c'] = (!empty($pathinfo[0]) ? $pathinfo[0] : 'Home');
+         array_shift($pathinfo); //将数组开头的单元移出数组  
+        //获取action
+         $_GET['a'] = (!empty($pathinfo[0]) ? $pathinfo[0] : 'main');
+         array_shift($pathinfo); //再将将数组开头的单元移出数组
+for($i=0; $i<count($pathinfo); $i+=2){
+$_GET[$pathinfo[$i]]=$pathinfo[$i+1];
+}
+}else{  
+$_GET["c"]= (!empty($_GET['c']) ? $_GET['c']: 'Home');
+$_GET["a"]= (!empty($_GET['a']) ? $_GET['a'] : 'main');
+if($_SERVER["query_string"]){
+$c=$_GET["c"];
+unset($_GET["c"]);  //去除数组中的c
+$a=$_GET["a"];
+unset($_GET["a"]);  //去除数组中的a
+$query=http_build_query($_GET);   //形成0=foo&1=bar&2=baz&3=boom&cow=milk格式
+//组成新的url
+$url=$_SERVER['script_name']."/{$c}/{$a}/".str_replace(array('.&','='), '/', $query);
+header('Location:'.$url);
+}   
+}
+}
     /**
      * 设置服务器的默认时区，以便正常显示本地时间
      *

@@ -1,14 +1,14 @@
 # 关于PHP_MVC_API   
-PHP_MVC_REST作为一个极其轻量级MVC&amp;API开发框架，是本人多年的php开发经验总结，不断吸取参考了flight、phx、discuz、punbb等开源项目的优点，最终形成独具自己风格的快速开发框架。目前我主要用于服务端应用程序接口开发，提供API和移动APP进行数据交换。   
+PHP_MVC_API作为一个极其轻量级MVC&amp;API开发框架，不断吸取参考了flight、phx、discuz、punbb等开源项目的优点，最终形成独具自己风格的快速开发框架。适合<b>微型项目</b>，让自己学会和巩固一些设计模式及一些必要的基础知识。目前我主要用于<b>服务端应用程序接口</b>开发，提供API和移动APP进行数据交换。   
 
-# 主要特性(Main Features)   
-极其轻量——核心代码几十KB，不到100KB。   
-单一入口——所有URL都是基于index.php，格式：http://{host}/{path}/index.php?c={controller}&a={action}&key1=value1&key2=value2...   
+# 主要特性(Feature)   
+极其轻量——核心代码主要在"libraries"目录下，几十KB，不到100KB。   
+单一入口——所有URL都是基于index.php。格式：http://{host}/{path}/index.php?c={controller}&a={action}&key1=value1&key2=value2...，如果服务器支持URL重写，则格式亦可为：http://{host}/{path}/{controller}/{action}/key1/value1/key2/value2...   
 结构清晰——使用MVC模式，分三个主目录，分前台后台，分普通网页及数据接口。   
-兼容性好——支持linux/windows+apache+mysql+php(lamp及wamp)、windows+iis+php、android+lighttp+mysql+php(almp)等常见环境。   
-免费开源——使用GPL协议，欢迎使用。   
+兼容性好——兼容php5.x，支持linux/windows+apache+mysql+php(lamp及wamp)、windows+iis+php等常见环境，安卓上的php环境也可运行。   
+免费开源——使用GPL协议，欢迎使用并贡献您的代码。   
 
-# 使用说明(Get Started)   
+# 使用说明(Usage)   
 1.在install.sql中写好创建表结构及其数据的SQL;   
 2.删掉config.php，访问首页即可进行数据库表的初始化;   
 3.在/views/front/目录下写前台的html页面，backend目录下写后台页面；   
@@ -16,7 +16,7 @@ PHP_MVC_REST作为一个极其轻量级MVC&amp;API开发框架，是本人多年
 5.在/controllers/front/目录下继承自FrontController类把Model中对数据库表的操作绑定到前台页面中，backend目录下继承自BackendController把Model的数据操作绑定到后台页面中，api目录下继承自ApiController可将数据作为json格式返回供客户端使用；   
 6.具体参见源代码。   
 # 示例代码(Sample)  
-### 接口   
+### 接口(默认返回JSON格式，XML格式需自行扩展)   
 see http://ime.qqtheme.cn/index.php?c=Upgrade   
 ```php
 class UpgradeController extends ApiController
@@ -48,7 +48,7 @@ class UpgradeController extends ApiController
 
 }
 ```   
-### 网页   
+### 网页(默认使用jQuery及MUI，可以自行替换)   
 see http://ime.qqtheme.cn/index.php?c=link   
 ```sql
 DROP TABLE IF EXISTS `lyj_link`;
@@ -138,6 +138,7 @@ class LinkController extends FrontController {
 ```   
 
 # 参考链接(Links)   
-Demo website: http://ime.qqtheme.cn   
-QQ: 103269470   
-Email: liyujiang_tk@yeah.net   
+Demo website: http://ime.qqtheme.cn/?c=article   
+<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=1032694760&site=穿青人&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:1032694760:51" alt="点击这里给我发消息" title="点击这里给我发消息"/></a>
+<a target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=q8fC0t7BwsrFzIXfwOva2oXIxMY" style="text-decoration:none;"><img src="http://rescdn.qqmail.com/zh_CN/htmledition/images/function/qm_open/ico_mailme_02.png"/></a>
+
