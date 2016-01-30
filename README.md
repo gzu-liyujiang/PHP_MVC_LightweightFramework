@@ -1,18 +1,20 @@
 # 关于PHP_MVC_API   
 PHP_MVC_API作为一个极其轻量级的MVC&amp;API开发框架，不断吸取参考了flight、phx、discuz、punbb等开源项目的优点，最终形成独具自己风格的快速开发框架。
-适合<b style="color:red">微型项目</b>，让自己学会和巩固一些设计模式及一些必要的基础知识。目前我主要用于<b style="color:red">服务端应用程序接口</b>开发，提供API和移动APP进行数据交换。   
+适合<span style="color:red;font-weight:bold;">微型项目</span>，让自己学会和巩固一些设计模式及一些必要的基础知识。目前我主要用于<span style="color:red">服务端应用程序接口</span>开发，提供API和移动APP进行数据交换。   
 
 # 主要特性(Feature)   
 * 极其轻量——核心代码主要在"libraries"目录下，几十KB，不到100KB。   
 * 单一入口——所有URL都是基于index.php。格式：http://{host}/{path}/index.php?c={controller}&a={action}&key1=value1&key2=value2...，
-如果服务器支持URL重写，则格式亦可为：http://{host}/{path}/{controller}/{action}/key1/value1/key2/value2...   
+如：http://localhost/php-develop/PHP_MVC_API/index.php?c=Article&a=detail&id=1。   
+如果服务器支持URL重写，则格式亦可为：http://{host}/{path}/{controller}/{action}/key1/value1/key2/value2...，
+如：http://localhost/php-develop/PHP_MVC_API/index.php/Article/detail/id/1（当然也可以改成自己的规则）。   
 * 结构清晰——使用MVC模式，分三个主目录，分前台后台，分普通网页及数据接口。   
 * 兼容性好——兼容php5.x，支持linux/windows+apache+mysql+php(lamp及wamp)、windows+iis+php等常见环境，安卓上的php环境也可运行。   
 * 开放源码——使用GPL协议，欢迎使用、反馈并贡献您的代码。   
 
 # 使用说明(Usage)   
 1. 在install.sql中写好创建表结构及其数据的SQL;   
-2. 删掉config.php，访问首页即可进行数据库表的初始化;   
+2. 删掉config.php，访问首页即可进行数据库表的初始化，自动创建config.php;   
 3. 在/views/front/目录下写前台的html页面，backend目录下写后台页面；   
 4. 在/models/目录下继承者Model类对数据库表进行增删改查；   
 5. 在/controllers/front/目录下继承自FrontController类把Model中对数据库表的操作绑定到前台页面中，

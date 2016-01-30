@@ -39,16 +39,16 @@
         }
         jQuery(".loader").show();
         name = encodeURIComponent(name);
-        jQuery.post("./admin.php?c=CategoryManage&a=add", {
+        jQuery.post("{$base_url}/admin.php?c=CategoryManage&a=add", {
             token: '{$token}',
             name: name,
             sortby: sortby
         }, function (result) {
             jQuery(".loader").hide();
             if (confirm(result + "\n需要继续添加吗？")) {
-                window.location = "./admin.php?c=CategoryManage&a=add&token={$token}";
+                window.location = "{$base_url}/admin.php?c=CategoryManage&a=add&token={$token}";
             } else {
-                window.location = "./admin.php?c=CategoryManage&token={$token}";
+                window.location = "{$base_url}/admin.php?c=CategoryManage&token={$token}";
             }
         }, "text");
         //noinspection JSValidateTypes

@@ -7,7 +7,7 @@
 <div class="mui-content">
     <!--{eval $count = isset($categories) ? count($categories) : 0;}-->
     <!--{if $count < 1}-->
-    <p class="center hint">暂时还没有分类，<a href="./admin.php?c=CategoryManage&a=add&token={$token}" class="active">点此添加</a>一个吧！
+    <p class="center hint">暂时还没有分类，<a href="{$base_url}/admin.php?c=CategoryManage&a=add&token={$token}" class="active">点此添加</a>一个吧！
     </p>
     <!--{else}-->
     <ul class="mui-table-view">
@@ -20,7 +20,7 @@
                 <span id="category_{$category['id']}"><!--{$category['name']}--></span>
 
                 <p class='mui-ellipsis'>
-                    <a href="./admin.php?c=CategoryManage&a=modify&token={$token}&id={$category['id']}">编辑</a> |
+                    <a href="{$base_url}/admin.php?c=CategoryManage&a=modify&token={$token}&id={$category['id']}">编辑</a> |
                     <a href="javascript:categoryDelete({$category['id']});">删除</a>
                 </p>
             </div>
@@ -33,7 +33,7 @@
     function categoryDelete(id) {
         var name = jQuery("#category_" + id).text();
         if (confirm("真的要删除《" + name + "》吗？\n删除后不可恢复，请谨慎操作！")) {
-            jQuery.post("./admin.php?c=CategoryManage&a=delete&id=" + id, {
+            jQuery.post("{$base_url}/admin.php?c=CategoryManage&a=delete&id=" + id, {
                 token: '{$token}'
             }, function (result) {
                 alert(result);

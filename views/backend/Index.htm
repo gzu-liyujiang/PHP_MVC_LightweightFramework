@@ -1,34 +1,34 @@
 <!--{template Header.htm}-->
 <header class="mui-bar mui-bar-nav">
-    <a class="mui-icon mui-icon-home mui-pull-left" href="./index.php" target="_blank"></a>
+    <a class="mui-icon mui-icon-home mui-pull-left" href="{$base_url}/index.php" target="_blank"></a>
 
     <h1 class="mui-title">{$title}</h1>
 </header>
 <div class="mui-content">
     <ul class="mui-table-view mui-table-view-chevron content">
         <li class="mui-table-view-cell">
-            <a href="./admin.php?c=Admin&a=setting&token={$token}" class="mui-navigate-right">网站设置</a>
+            <a href="{$base_url}/admin.php?c=Admin&a=setting&token={$token}" class="mui-navigate-right">网站设置</a>
         </li>
         <li class="mui-table-view-cell">
-            <a href="./admin.php?c=Admin&a=modifyPassword&token={$token}" class="mui-navigate-right">修改密码</a>
+            <a href="{$base_url}/admin.php?c=Admin&a=modifyPassword&token={$token}" class="mui-navigate-right">修改密码</a>
         </li>
         <li class="mui-table-view-cell">
-            <a href="./admin.php?c=CategoryManage&a=add&token={$token}" class="mui-navigate-right">添加分类</a>
+            <a href="{$base_url}/admin.php?c=CategoryManage&a=add&token={$token}" class="mui-navigate-right">添加分类</a>
         </li>
         <li class="mui-table-view-cell">
-            <a href="./admin.php?c=CategoryManage&token={$token}" class="mui-navigate-right">管理分类</a>
+            <a href="{$base_url}/admin.php?c=CategoryManage&token={$token}" class="mui-navigate-right">管理分类</a>
         </li>
         <li class="mui-table-view-cell">
-            <a href="./admin.php?c=ArticleManage&a=add&token={$token}" class="mui-navigate-right">添加文章</a>
+            <a href="{$base_url}/admin.php?c=ArticleManage&a=add&token={$token}" class="mui-navigate-right">添加文章</a>
         </li>
         <li class="mui-table-view-cell">
-            <a href="./admin.php?c=ArticleManage&token={$token}" class="mui-navigate-right">管理文章</a>
+            <a href="{$base_url}/admin.php?c=ArticleManage&token={$token}" class="mui-navigate-right">管理文章</a>
         </li>
         <li class="mui-table-view-cell">
-            <a href="./admin.php?c=LinkManage&a=add&token={$token}" class="mui-navigate-right">添加友链</a>
+            <a href="{$base_url}/admin.php?c=LinkManage&a=add&token={$token}" class="mui-navigate-right">添加友链</a>
         </li>
         <li class="mui-table-view-cell">
-            <a href="./admin.php?c=LinkManage&token={$token}" class="mui-navigate-right">管理友链</a>
+            <a href="{$base_url}/admin.php?c=LinkManage&token={$token}" class="mui-navigate-right">管理友链</a>
         </li>
     </ul>
     <ul class="mui-table-view">
@@ -40,11 +40,11 @@
 <script type="text/javascript">
     function logout() {
         if (confirm("真的要退出吗？")) {
-            jQuery.post("./api.php?c=Token&a=revoke", {
+            jQuery.post("{$base_url}/api.php?c=Token&a=revoke", {
                 token: "{$token}"
             }, function (result) {
                 if (result.code == 1) {
-                    window.location = "./admin.php?c=Unlogin";
+                    window.location = "{$base_url}/admin.php?c=Unlogin";
                 } else {
                     alert(result.msg);
                 }

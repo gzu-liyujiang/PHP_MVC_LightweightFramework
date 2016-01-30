@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 
 <head>
@@ -8,12 +8,12 @@
     <meta name="MobileOptimized" content="480"/>
     <meta name="Author" content="{$author}"/>
     <meta name="robots" content="allow"/>
-    <script type="text/javascript" src="./views/assets/js/mui.min.js"></script>
-    <script type="text/javascript" src="./views/assets/js/jquery.js"></script>
-    <script type="text/javascript" src="./views/assets/js/default.js"></script>
+    <script type="text/javascript" src="{$base_url}/views/assets/js/mui.min.js"></script>
+    <script type="text/javascript" src="{$base_url}/views/assets/js/jquery.js"></script>
+    <script type="text/javascript" src="{$base_url}/views/assets/js/default.js"></script>
     <title>请先登录</title>
-    <link href="./views/assets/css/mui.min.css" rel="stylesheet"/>
-    <link href="./views/assets/css/default.css" rel="stylesheet"/>
+    <link href="{$base_url}/views/assets/css/mui.min.css" rel="stylesheet"/>
+    <link href="{$base_url}/views/assets/css/default.css" rel="stylesheet"/>
     <style type="text/css">
         .mui-content {
             padding: 10px;
@@ -69,13 +69,13 @@
         userName = encodeURIComponent(userName);
         userPass = encodeURIComponent(userPass);
         jQuery(".loader").show();
-        jQuery.post("./api.php?c=User&a=login", {
+        jQuery.post("{$base_url}/api.php?c=User&a=login", {
             account: userName,
             password: userPass
         }, function (result) {
             jQuery(".loader").hide();
             if (result.code == 1) {
-                window.location = "./admin.php?token=" + result.data;
+                window.location = "{$base_url}/admin.php?token=" + result.data;
             } else {
                 alert(result.msg);
             }

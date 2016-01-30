@@ -46,7 +46,7 @@
         }
         jQuery(".loader").show();
         name = encodeURIComponent(name);
-        jQuery.post("./admin.php?c=CategoryManage&a=modify&id={$id}", {
+        jQuery.post("{$base_url}/admin.php?c=CategoryManage&a=modify&id={$id}", {
             token: '{$token}',
             name: name,
             sortby: sortby,
@@ -56,7 +56,7 @@
             if (confirm(result + "\n需要重新编辑吗？")) {
                 window.location.reload();
             } else {
-                window.location = "./admin.php?c=CategoryManage&token={$token}";
+                window.location = "{$base_url}/admin.php?c=CategoryManage&token={$token}";
             }
         }, "text");
         //noinspection JSValidateTypes

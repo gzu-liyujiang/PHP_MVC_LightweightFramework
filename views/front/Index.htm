@@ -16,9 +16,9 @@
     <meta name="robots" content="all"/>
     <meta name="baidu-site-verification" content="PiOwUHsdmT"/>
     <title>{$title} - {$seo_title}</title>
-    <link type="image/x-icon" rel="icon" href="./favicon.ico"/>
-    <link type="image/x-icon" rel="shortcut icon" href="./favicon.ico"/>
-    <link href="./views/assets/css/default.css" rel="stylesheet"/>
+    <link type="image/x-icon" rel="icon" href="{$base_url}/favicon.ico"/>
+    <link type="image/x-icon" rel="shortcut icon" href="{$base_url}/favicon.ico"/>
+    <link href="{$base_url}/views/assets/css/default.css" rel="stylesheet"/>
     <style type="text/css">
         body {
             padding: 0;
@@ -32,7 +32,7 @@
 
         .banner {
             text-align: center;
-            background-image: url("./views/assets/img/banner_bg.png");
+            background-image: url("{$base_url}/views/assets/img/banner_bg.png");
             background-size: cover;
             position: relative;
         }
@@ -157,7 +157,7 @@
 </script>
 <div class="content">
     <div class="banner">
-        <img alt="." src="./views/assets/img/banner.jpg"/>
+        <img alt="." src="{$base_url}/views/assets/img/banner.jpg"/>
     </div>
     <div class="description">
         {$seo_description}

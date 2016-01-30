@@ -64,7 +64,7 @@ class InstallController extends Controller
         //删掉注释
         $sql = rtrim($sql, ";\n \t\r\0\x0B");
         //删掉最后一条SQL语句的逗号及换行、空格、跳格、回车等字符，以防止产生空语句
-        Logger::getInstance()->debug($sql);
+        Logger::getInstance('sql')->debug($sql);
         $arr = explode(';', $sql);
         //切割语句
         $num = count($arr);

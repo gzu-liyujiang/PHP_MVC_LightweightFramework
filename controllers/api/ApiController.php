@@ -10,9 +10,11 @@
  */
 class ApiController extends Controller
 {
+    protected $base_url;
 
     public function __construct()
     {
+        $this->base_url = Flight::getInstance()->get('base_url');
         if (ApiCOnfig::NEED_ACCESS_TOKEN)
         {
             $access_token = isset($_REQUEST['access_token']) ? $_REQUEST['access_token'] : '';

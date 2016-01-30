@@ -1,6 +1,6 @@
 <!--{template Header.htm}-->
-<script type="text/javascript" src="./views/assets/js/jquery.uploadfile.js"></script>
-<script type="text/javascript" src="./views/assets/js/jquery.form.js"></script>
+<script type="text/javascript" src="{$base_url}/views/assets/js/jquery.uploadfile.js"></script>
+<script type="text/javascript" src="{$base_url}/views/assets/js/jquery.form.js"></script>
 <header class="mui-bar mui-bar-nav">
     <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" href="javascript:history.back();"></a>
 
@@ -20,7 +20,7 @@
                 <!--{/foreach}-->
             </select>
         </div>
-        <h5>名称：(支持<a href="./admin.php?c=Ubb" target="_blank">UBB</a>)</h5>
+        <h5>名称：(支持<a href="{$base_url}/admin.php?c=Ubb" target="_blank">UBB</a>)</h5>
 
         <div class="mui-input-row">
             <input type="text" id="link_name" name="link_name" maxlength="50" value="{$name}"
@@ -52,7 +52,7 @@
 </div>
 <script type="text/javascript">
     jQuery("#upload").uploadFile({
-        url: './api.php?c=Upload&dir=image',
+        url: '{$base_url}/api.php?c=Upload&dir=image',
         returnType: 'json',
         fileName: 'file',
         multiple: false,
@@ -109,7 +109,7 @@
         name = encodeURIComponent(name);
         url = encodeURIComponent(url);
         icon = encodeURIComponent(icon);
-        jQuery.post("./admin.php?c=LinkManage&a=modify&id={$id}", {
+        jQuery.post("{$base_url}/admin.php?c=LinkManage&a=modify&id={$id}", {
             token: '{$token}',
             category: category,
             name: name,
@@ -121,7 +121,7 @@
             if (confirm(result + "\n需要重新编辑吗？")) {
                 window.location.reload();
             } else {
-                window.location = "./admin.php?c=LinkManage&token={$token}";
+                window.location = "{$base_url}/admin.php?c=LinkManage&token={$token}";
             }
         }, "text");
         //noinspection JSValidateTypes

@@ -1,8 +1,8 @@
 <!--{template Header.htm}-->
-<script type="text/javascript" src="./views/assets/js/jquery.qeditor.js"></script>
+<script type="text/javascript" src="{$base_url}/views/assets/js/jquery.qeditor.js"></script>
 <style type="text/css">
     @import url("http://cdn.staticfile.org/font-awesome/4.0.3/css/font-awesome.min.css");
-    @import url("./views/assets/css/qeditor.css");
+    @import url("{$base_url}/views/assets/css/qeditor.css");
 </style>
 <header class="mui-bar mui-bar-nav">
     <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" href="javascript:history.back();"></a>
@@ -23,7 +23,7 @@
                 <!--{/foreach}-->
             </select>
         </div>
-        <h5>标题：(支持<a href="./admin.php?c=Ubb" target="_blank">UBB</a>)</h5>
+        <h5>标题：(支持<a href="{$base_url}/admin.php?c=Ubb" target="_blank">UBB</a>)</h5>
 
         <div class="mui-input-row">
             <input type="text" id="title" name="title" value="{$title}" class="mui-input-clear mui-input"/>
@@ -55,7 +55,7 @@
         jQuery(".loader").show();
         title = encodeURIComponent(title);
         content = encodeURIComponent(content);
-        jQuery.post("./admin.php?c=ArticleManage&a=modify&id={$id}", {
+        jQuery.post("{$base_url}/admin.php?c=ArticleManage&a=modify&id={$id}", {
             token: '{$token}',
             category: category,
             title: title,
@@ -63,9 +63,9 @@
         }, function (result) {
             jQuery(".loader").hide();
             if (confirm(result + "\n需要重新编辑文章吗？")) {
-                window.location = "./admin.php?c=ArticleManage&a=modify&id={$id}&token={$token}";
+                window.location = "{$base_url}/admin.php?c=ArticleManage&a=modify&id={$id}&token={$token}";
             } else {
-                window.location = "./admin.php?c=ArticleManage&token={$token}";
+                window.location = "{$base_url}/admin.php?c=ArticleManage&token={$token}";
             }
         }, "text");
         //noinspection JSValidateTypes

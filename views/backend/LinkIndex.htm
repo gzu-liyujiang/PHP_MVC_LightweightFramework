@@ -7,7 +7,7 @@
 <div class="mui-content">
     <!--{eval $count = isset($links) ? count($links) : 0;}-->
     <!--{if $count < 1}-->
-    <p class="center hint">暂时还没有友情链接，<a href="./admin.php?c=LinkManage&a=add&token={$token}" class="active">点此添加</a>一个吧！
+    <p class="center hint">暂时还没有友情链接，<a href="{$base_url}/admin.php?c=LinkManage&a=add&token={$token}" class="active">点此添加</a>一个吧！
     </p>
     <!--{else}-->
     <ul class="mui-table-view content">
@@ -21,7 +21,7 @@
                     <!--{$i}-->、
                     <!--{eval echo Ubb::decode($links[$i-1]['name']);}-->
                     <p class='mui-ellipsis'>
-                        <a href="./admin.php?c=LinkManage&a=modify&token={$token}&id={$links[$i-1]['id']}">编辑</a> |
+                        <a href="{$base_url}/admin.php?c=LinkManage&a=modify&token={$token}&id={$links[$i-1]['id']}">编辑</a> |
                         <a href="javascript:linkDelete({$links[$i-1]['id']});">删除</a>
                     </p>
                 </div>
@@ -49,7 +49,7 @@
     function linkDelete(id) {
         var url = jQuery.trim(jQuery("#link_" + id).text());
         if (confirm("真的要删除《" + url + "》吗？\n删除后不可恢复，请谨慎操作！")) {
-            jQuery.post("./admin.php?c=LinkManage&a=delete&id=" + id, {
+            jQuery.post("{$base_url}/admin.php?c=LinkManage&a=delete&id=" + id, {
                 token: '{$token}'
             }, function (result) {
                 alert(result);

@@ -7,7 +7,7 @@
 <div class="mui-content">
     <!--{eval $count = isset($articles) ? count($articles) : 0;}-->
     <!--{if $count < 1}-->
-    <p class="center hint">暂时还没有文章，<a href="./admin.php?c=ArticleManage&a=add&token={$token}" class="active">点此添加</a>一篇吧！
+    <p class="center hint">暂时还没有文章，<a href="{$base_url}/admin.php?c=ArticleManage&a=add&token={$token}" class="active">点此添加</a>一篇吧！
     </p>
     <!--{else}-->
     <ul class="mui-table-view content">
@@ -18,13 +18,13 @@
         <li class="mui-table-view-cell mui-media">
             <div class="mui-media-body">
                 <!--{$i}-->、
-                <a href="./index.php?c=Article&a=detail&id={$articles[$i-1]['id']}" target="_blank"
+                <a href="{$base_url}/index.php?c=Article&a=detail&id={$articles[$i-1]['id']}" target="_blank"
                    id="article_{$articles[$i-1]['id']}">
                     <!--{eval echo Ubb::decode($articles[$i-1]['title']);}-->
                 </a>
 
                 <p class='mui-ellipsis'>
-                    <a href="./admin.php?c=ArticleManage&a=modify&token={$token}&id={$articles[$i-1]['id']}">编辑</a> |
+                    <a href="{$base_url}/admin.php?c=ArticleManage&a=modify&token={$token}&id={$articles[$i-1]['id']}">编辑</a> |
                     <a href="javascript:articleDelete({$articles[$i-1]['id']});">删除</a>
                 </p>
             </div>
@@ -50,7 +50,7 @@
     function articleDelete(id) {
         var title = jQuery.trim(jQuery("#article_" + id).text());
         if (confirm("真的要删除《" + title + "》吗？\n删除后不可恢复，请谨慎操作！")) {
-            jQuery.post("./admin.php?c=ArticleManage&a=delete&id=" + id, {
+            jQuery.post("{$base_url}/admin.php?c=ArticleManage&a=delete&id=" + id, {
                 token: '{$token}'
             }, function (result) {
                 alert(result);

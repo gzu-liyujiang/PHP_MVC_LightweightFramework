@@ -56,7 +56,7 @@
         seo_keywords = encodeURIComponent(seo_keywords);
         seo_description = encodeURIComponent(seo_description);
         copyright = encodeURIComponent(copyright);
-        jQuery.post("api.php?c=Setting", {
+        jQuery.post("{$base_url}/api.php?c=Setting", {
             token: '{$token}',
             contact: contact,
             seo_title: seo_title,

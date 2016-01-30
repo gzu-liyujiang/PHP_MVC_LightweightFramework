@@ -10,6 +10,7 @@
  */
 abstract class BackendController extends Controller
 {
+    protected $base_url;
     /**
      * @var Template
      */
@@ -17,9 +18,11 @@ abstract class BackendController extends Controller
 
     public function __construct()
     {
+        $this->base_url = Flight::getInstance()->get('base_url');
         $this->template = Template::getInstance();
         $this->template->setTemplateDir(ROOT_PATH . '/views/backend/');
         $this->template->assign('title', '后台管理系统');
+        $this->template->assign('base_url', Flight::getInstance()->get('base_url'));
     }
 
 }

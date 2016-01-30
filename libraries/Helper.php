@@ -21,13 +21,30 @@ final class Helper
      */
     public static function routeDispense()
     {
-        self::parsePathInfo();
+        //此处用于支持URL重写
+        if (isset($_SERVER['PATH_INFO'])) {
+            //获取pathinfo
+            Logger::getInstance()->debug('path info>>> ' . $_SERVER['PATH_INFO']);
+            $pathinfo = explode('/', trim($_SERVER['PATH_INFO'], '/'));
+            //获取control
+            $_GET['c'] = (!empty($pathinfo[0]) ? $pathinfo[0] : 'Home');
+            array_shift($pathinfo); //将数组开头的单元移出数组
+            //获取action
+            $_GET['a'] = (!empty($pathinfo[0]) ? $pathinfo[0] : 'main');
+            array_shift($pathinfo); //再将将数组开头的单元移出数组
+            for ($i = 0; $i < count($pathinfo); $i += 2) {
+                $_GET[$pathinfo[$i]] = $pathinfo[$i + 1];
+            }
+        }
+        
+        //识别真正的URL
         if (isset($_GET['c'])) {
             //请求的控制器
             $controller = ucwords(trim($_GET['c'])) . "Controller";
         } else {
             //默认控制器
             $currentUrl = self::currentUrl();
+            Logger::getInstance()->debug('current url>>> ' . $currentUrl);
             if (stripos($currentUrl, "admin.php") > 0) {
                 $controller = "AdminController";
             } else if (stripos($currentUrl, "api.php") > 0) {
@@ -48,39 +65,6 @@ final class Helper
             call_user_func(array(new $class(), $method));
         } else {
             exit('the class or method is not found: ' . $class . '->' . $method . '()');
-        }
-    }
-
-    /**
-     * 解析路径信息
-     */
-    private static function parsePathInfo()
-    {
-        if (isset($_SERVER['path_info'])) {
-            //获取pathinfo
-            $pathinfo = explode('/', trim($_SERVER['path_info'], '/'));
-            //获取control
-            $_GET['c'] = (!empty($pathinfo[0]) ? $pathinfo[0] : 'Home');
-            array_shift($pathinfo); //将数组开头的单元移出数组
-            //获取action
-            $_GET['a'] = (!empty($pathinfo[0]) ? $pathinfo[0] : 'main');
-            array_shift($pathinfo); //再将将数组开头的单元移出数组
-            for ($i = 0; $i < count($pathinfo); $i += 2) {
-                $_GET[$pathinfo[$i]] = $pathinfo[$i + 1];
-            }
-        } else {
-            $_GET["c"] = (!empty($_GET['c']) ? $_GET['c'] : 'Home');
-            $_GET["a"] = (!empty($_GET['a']) ? $_GET['a'] : 'main');
-            if ($_SERVER["query_string"]) {
-                $c = $_GET["c"];
-                unset($_GET["c"]);//去除数组中的c
-                $a = $_GET["a"];
-                unset($_GET["a"]);//去除数组中的a
-                $query = http_build_query($_GET);//形成0=foo&1=bar&2=baz&3=boom&cow=milk格式
-                $url = $_SERVER['script_name'] . "/{$c}/{$a}/" . str_replace(array('.&', '='), '/', $query);
-                Logger::getInstance()->debug($url);
-                header('Location:' . $url);
-            }
         }
     }
 
