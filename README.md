@@ -15,7 +15,9 @@ PHP_MVC_API作为一个极其轻量级的MVC&amp;API开发框架，不断吸取�
 2. 删掉config.php，访问首页即可进行数据库表的初始化;   
 3. 在/views/front/目录下写前台的html页面，backend目录下写后台页面；   
 4. 在/models/目录下继承者Model类对数据库表进行增删改查；   
-5. 在/controllers/front/目录下继承自FrontController类把Model中对数据库表的操作绑定到前台页面中，backend目录下继承自BackendController把Model的数据操作绑定到后台页面中，api目录下继承自ApiController可将数据作为json格式返回供客户端使用；   
+5. 在/controllers/front/目录下继承自FrontController类把Model中对数据库表的操作绑定到前台页面中，
+backend目录下继承自BackendController把Model的数据操作绑定到后台页面中，
+api目录下继承自ApiController可将数据作为json格式返回供客户端使用；   
 6. 具体参见源代码。   
 
 # 示例代码(Sample)  
