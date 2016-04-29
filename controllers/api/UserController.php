@@ -68,12 +68,14 @@ class UserController extends ApiController
             $this->responseJson(0, "用户账号已存在", $account);
         }
         $hashPassword = $this->userModel->buildPassword($password);
+        //需防刷恶意注册
         $id = $this->userModel->add(array(
             'account' => $account,
             'password' => $hashPassword,
             'nick' => $nick,
             'sex' => 0,
             'device_id' => $device_id,
+            'is_forbidden' => 0,
             'timeline' => time()
         ));
         if ($id > 0) {
@@ -97,14 +99,9 @@ class UserController extends ApiController
             $res = $this->userModel->findByToken($token);
         }
         if ($res) {
-            $newRes = array();
-            foreach ($res as $k => $v) {
-                //过滤掉密码
-                if ($k !== 'password') {
-                    $newRes[$k] = $v;
-                }
-            }
-            $this->responseJson(1, "获取用户资料成功", $newRes);
+            unset($res['password']); //过滤掉密码
+            unset($res['is_app']);
+            $this->responseJson(1, "获取用户资料成功", $res);
         } else {
             $this->responseJson(0, "获取用户资料失败");
         }

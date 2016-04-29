@@ -58,11 +58,6 @@ final class TokenModel extends Model
             "update_timeline" => time(),
             "expire_timeline" => time() + $this->_expire_time
         );
-//        if ($this->exist($user_id)) {
-//            return $this->update("lyj_token", $data, "user_id={$user_id}");
-//        } else {
-//            return $this->insert("lyj_token", $data) > 0;
-//        }
         return $this->insertOrUpdate("lyj_token", $data, array("token" => $token));
     }
 

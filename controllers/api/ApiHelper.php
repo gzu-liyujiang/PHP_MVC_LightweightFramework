@@ -2,14 +2,14 @@
 
 /**
  * Created by PhpStorm.
- * Author: ÀîÓñ½­[QQ:1032694760]
+ * Author: æç‰æ±Ÿ[QQ:1032694760]
  * Date: 2015-10-02 18:06
  */
 class ApiHelper
 {
 
     /**
-     * ¼ì²âaccess_tokenÊÇ·ñÓĞĞ§
+     * æ£€æµ‹access_tokenæ˜¯å¦æœ‰æ•ˆ
      *
      * @param $token
      * @return array|bool
@@ -17,15 +17,15 @@ class ApiHelper
     public static function accessTokenValid($token)
     {
         if (empty($token)) {
-            Logger::getInstance()->warn("TokenÎª¿Õ");
+            Logger::getInstance()->warn("Tokenä¸ºç©º");
             return false;
         }
-        $model = new AppTokenModel();
+        $model = new TokenModel();
         $res = $model->read($token);
         if ($res) {
             return $res;
         } else {
-            Logger::getInstance()->warn("Î´ÊÚÈ¨»òÒÑ¹ıÆÚ");
+            Logger::getInstance()->warn("æœªæˆæƒæˆ–å·²è¿‡æœŸ");
             return false;
         }
     }

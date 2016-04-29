@@ -37,7 +37,7 @@ class TokenController extends ApiController
     }
     
     /**
-     * APP授权，换取访问api的token
+     * APP授权，换取访问API的token
      */
     public function appAuth()
     {
@@ -47,22 +47,25 @@ class TokenController extends ApiController
             $this->responseJson(0, "app id不能为空");
         }
         if (empty($app_secret)) {
-            $this->responseJson(0, "app secret不能为空");
+            $this->responseJson(0, "AppSecret不能为空");
         }
        $userModel = new UserModel();
         $user = $userModel->findByAccount($app_id);
         if (!$user) {
-            $this->responseJson(0, "app id不存在", $app_id);
+            $this->responseJson(0, "AppID不存在", $app_id);
         }
-        if ($userModel->buildPassword($password) != $user["password"]) {
-            $this->responseJson(0, "app secret错误", $app_secret);
+        if ($userModel->buildPassword($app_secret) != $user["password"]) {
+            $this->responseJson(0, "AppSecret错误", $app_secret);
+        }
+        if ($user["is_forbidden"] != 0){
+            $this->responseJson(0, "APP禁止访问API", $_POST);
         }
         $tokenModel = new TokenModel();
         $token = $tokenModel->build($user["id"]);
         if ($tokenModel->save($user["id"], $token)) {
-            $this->responseJson(1, "app授权成功", $token);
+            $this->responseJson(1, "APP授权成功", $token);
         } else {
-            $this->responseJson(0, "app授权失败", $_POST);
+            $this->responseJson(0, "APP授权失败", $_POST);
         }
 
     }
@@ -89,8 +92,18 @@ class TokenController extends ApiController
         $userModel = new UserModel();
         $user = $userModel->findByToken($token);
         $tokenModel = new TokenModel();
-        if (!$user) {
-            //token不存在则添加
+        if ($user) {
+            if ($user["is_forbidden"] != 0){
+                $this->responseJson(0, "用户已被冻结", $_REQUEST);
+            } else{
+                //token存在则更新时间
+                $tokenModel->updateTime($token);
+                unset($user['password']); //过滤掉密码
+                unset($user['is_app']);
+                $this->responseJson(1, "用户授权成功", $user);
+            }
+        } else {
+            //token不存在则添加，需防刷
             $id = $userModel->add(array(
                 'account' => NULL,
                 'password' => NULL,
@@ -98,25 +111,15 @@ class TokenController extends ApiController
                 'sex' => $sex,
                 'face' => $face,
                 'device_id' => $device_id,
+                'is_forbidden' => 0,
                 'timeline' => time()
             ));
-            $tokenModel->save($id, $token);
-        } else {
-            //token存在则更新时间
-            $tokenModel->updateTime($token);
-        }
-        $res = $userModel->findByToken($token);
-        if ($res) {
-            $newRes = array();
-            foreach ($res as $k => $v) {
-                //过滤掉密码
-                if ($k !== 'password') {
-                    $newRes[$k] = $v;
-                }
+            if ($id > 0){
+                $tokenModel->save($id, $token);
+                $this->responseJson(0, "用户授权成功", $id);
+            } else {
+                $this->responseJson(0, "用户授权失败", $_REQUEST);
             }
-            $this->responseJson(1, "用户授权成功", $newRes);
-        } else {
-            $this->responseJson(0, "用户授权失败", $_REQUEST);
         }
     }
 
