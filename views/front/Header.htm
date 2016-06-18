@@ -14,7 +14,11 @@
     <meta name='Description' content="{$seo_description}"/>
     <meta name="robots" content="all"/>
     <meta name="baidu-site-verification" content="PiOwUHsdmT"/>
+    <!--{if strpos($_SERVER['HTTP_USER_AGENT'],'liyujiang')===false}-->
     <title>{$title} - {$seo_title}</title>
+	<!--{else}-->
+    <title>{$title}</title>
+	<!--{/if}-->
     <link type="image/x-icon" rel="icon" href="{$base_url}/favicon.ico"/>
     <link type="image/x-icon" rel="shortcut icon" href="{$base_url}/favicon.ico"/>
     <link href="{$base_url}/views/assets/css/mui.min.css" rel="stylesheet"/>
