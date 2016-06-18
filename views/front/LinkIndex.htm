@@ -1,7 +1,9 @@
 <!--{template Header.htm}-->
+<!--{if strpos($_SERVER['HTTP_USER_AGENT'],'liyujiang')===false}-->
 <header class="mui-bar mui-bar-nav">
     <h1 class="mui-title">{$title}</h1>
 </header>
+<!--{/if}-->
 <div class="mui-content">
     <!--{eval $count = isset($links) ? count($links) : 0;}-->
     <!--{if $count < 1}-->

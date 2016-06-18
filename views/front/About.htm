@@ -9,9 +9,11 @@
         }
     }
 </script>
+<!--{if strpos($_SERVER['HTTP_USER_AGENT'],'liyujiang')===false}-->
 <header class="mui-bar mui-bar-nav">
     <h1 class="mui-title">{$title}</h1>
 </header>
+<!--{/if}-->
 <div class="mui-content">
     <h5 class="center"><img src="./views/assets/img/icon.png" width="180" height="180" alt="输入法皮肤控"
                             onclick="showSoftwareInfo()"/></h5>
