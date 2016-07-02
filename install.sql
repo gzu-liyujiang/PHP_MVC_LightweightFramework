@@ -107,7 +107,7 @@ CREATE TABLE IF NOT EXISTS `lyj_user` (
 INSERT INTO `lyj_user` (`id`, `account`, `password`, `nick`, `face`, `sex`, `device_id`, `is_forbidden`, `is_app`, `timeline`)
 VALUES (1, 'admin', 'e10adc3949ba59abbe56e057f20f883e', '穿青人', '', 1, '15244545455', 0, 0, 0);
 INSERT INTO `lyj_user` (`id`, `account`, `password`, `nick`, `face`, `sex`, `device_id`, `is_forbidden`, `is_app`, `timeline`)
-VALUES (1, 'lyj', 'e10adc3949ba59abbe56e057f20f883e', '穿青人', '', 1, '15244545455', 0, 0, 0);
+VALUES (2, 'lyj', 'e10adc3949ba59abbe56e057f20f883e', '穿青人', '', 1, '15244545455', 0, 0, 0);
 
 --
 -- 友链表
