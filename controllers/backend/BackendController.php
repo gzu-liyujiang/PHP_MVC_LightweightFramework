@@ -18,11 +18,17 @@ abstract class BackendController extends Controller
 
     public function __construct()
     {
-        $this->base_url = Flight::getInstance()->get('base_url');
         $this->template = Template::getInstance();
         $this->template->setTemplateDir(ROOT_PATH . '/views/backend/');
-        $this->template->assign('title', '后台管理系统');
-        $this->template->assign('base_url', Flight::getInstance()->get('base_url'));
+		$isInstall = $_GET['c'] == 'install';
+        if (!file_exists(ROOT_PATH . '/config.php')) {
+            $this->template->assign('url', './admin.php?c=install');
+            $this->template->display("Redirect.htm");
+        } else {
+            $this->template->assign('title', '后台管理系统');
+            $this->base_url = Flight::getInstance()->get('base_url');
+            $this->template->assign('base_url', $this->base_url);	
+		}
     }
 
 }

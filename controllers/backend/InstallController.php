@@ -30,6 +30,7 @@ class InstallController extends Controller
         $template = Template::getInstance();
         $template->setTemplateDir(ROOT_PATH . '/views/backend/');
         $template->assign('title', '安装向导');
+        $template->assign('base_url', '/');
         $template->remove('copyright');
         $template->display("Install.htm");
     }
