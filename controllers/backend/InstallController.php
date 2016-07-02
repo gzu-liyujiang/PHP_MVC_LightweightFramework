@@ -57,22 +57,16 @@ class InstallController extends Controller
         $files = scandir(ROOT_PATH);
         foreach ($files as $file) {
             if (false != stripos($file, '.sql')) {
-                $sql .= @file_get_contents($file);
-                //合并SQL文件
+                $sql .= @file_get_contents($file);//合并SQL文件
             }
         }
-        $sql = preg_replace('/--.*?\n/U', '', $sql);
-        //删掉注释
-        $sql = rtrim($sql, ";\n \t\r\0\x0B");
-        //删掉最后一条SQL语句的逗号及换行、空格、跳格、回车等字符，以防止产生空语句
+        $sql = preg_replace('/--.*?\n/U', '', $sql);//删掉注释
+        $sql = rtrim($sql, ";\n \t\r\0\x0B");//删掉最后一条SQL语句的逗号及换行、空格、跳格、回车等字符，以防止产生空语句
         Logger::getInstance('sql')->debug($sql);
-        $arr = explode(';', $sql);
-        //切割语句
+        $arr = explode(';', $sql);//切割语句
         $num = count($arr);
-        $err = '';
-        //存储执行出错的语句
-        $suc = 0;
-        //存储成功执行的语句数目
+        $err = '';//存储执行出错的语句
+        $suc = 0;//存储成功执行的语句数目
         for ($i = 0; $i < $num; $i++) {
             $s = trim($arr[$i]);
             if ($db->query($s)) {

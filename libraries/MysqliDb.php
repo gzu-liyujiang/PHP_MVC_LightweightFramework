@@ -171,7 +171,7 @@ final class MysqliDb implements IDatabase
     public function error()
     {
         if (IS_DEVELOP) {
-            return mysqli_error($this->conn) . '\n' . end($this->sql);
+            return mysqli_error($this->conn) . "\n" . end($this->sql);
         }
         return '';
     }
