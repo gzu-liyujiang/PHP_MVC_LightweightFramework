@@ -1,4 +1,4 @@
-~~【已废弃，个人精力不在PHP方面，故不再更新维护】~~
+### ~~【已废弃，个人精力不在PHP方面，故不再更新维护】~~
 # 关于PHP_MVC_API   
 PHP_MVC_API作为一个极其轻量级的MVC&amp;API开发框架，不断吸取参考了flight、phx、discuz、punbb等开源项目的优点，最终形成独具自己风格的快速开发框架。
 适合<span style="color:red;font-weight:bold;">微型项目</span>，让自己学会和巩固一些设计模式及一些必要的基础知识。目前我主要用于<span style="color:red">服务端应用程序接口</span>开发，提供API和移动APP进行数据交换。   
